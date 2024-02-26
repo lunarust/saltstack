@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   grafana:
     image: grafana/grafana:latest
     ports:

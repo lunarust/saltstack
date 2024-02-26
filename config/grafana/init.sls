@@ -1,3 +1,10 @@
+# sudo ufw allow 3000
+ufw:
+  services:
+    "3000":
+      protocol: tcp
+
+
 /opt/grafana:
   file.directory:
     - user: rust
@@ -32,4 +39,3 @@ grafana_configuration:
     - source: salt://grafana/files/grafana.ini
     - template: jinja
     - create: True
-

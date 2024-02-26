@@ -6,3 +6,4 @@ motd:
     - source: salt://os/files/motd
     - template: jinja
 
+# usermod -aG docker zabbix
