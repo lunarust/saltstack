@@ -1,0 +1,14 @@
+## Firewall command
+
+### Salt
+public:
+  firewalld.present:
+    - name: public
+    - prune_services: False
+    - default: False
+    - masquerade: False
+    - ports:
+      - 10050-10051/tcp
+
+## Files 
+
