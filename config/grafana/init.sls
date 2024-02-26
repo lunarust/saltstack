@@ -1,9 +1,7 @@
 # sudo ufw allow 3000
-ufw:
-  services:
-    "3000":
-      protocol: tcp
-
+ufw allow 3000/tcp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '3000/tcp'"
 
 /opt/grafana:
   file.directory:
