@@ -5,3 +5,7 @@ salt:
 zabbix:
   'rasppi.greece.local':
      - zabbix.init
+
+grafana:
+  'rasppi.greece.local':
+     - grafana.init
