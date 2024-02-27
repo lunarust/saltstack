@@ -19,3 +19,5 @@ sudo -u postgres /usr/lib/postgresql/13/bin/pg_ctl reload -D /var/lib/postgresql
 
 # or 
 # sudo systemctl restart postgresql@13-main.service
+# or 
+# SELECT pg_reload_conf()
