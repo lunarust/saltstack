@@ -9,3 +9,7 @@ zabbix:
 grafana:
   'rasppi.greece.local':
      - grafana.init
+
+postgres:
+  'rasppi.greece.local':
+     - postgres.init
