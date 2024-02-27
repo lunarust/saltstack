@@ -37,3 +37,10 @@ grafana_configuration:
     - source: salt://grafana/files/grafana.ini
     - template: jinja
     - create: True
+
+grafana_nginx_configuration:
+  file.managed:
+    - name: /etc/nginx/grafana.conf
+    - source: salt://grafana/nginx/grafana.conf
+    - template: jinja
+    - create: True

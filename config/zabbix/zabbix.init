@@ -1,14 +1,20 @@
 ## Firewall command
 
 ### Salt
-public:
-  firewalld.present:
-    - name: public
-    - prune_services: False
-    - default: False
-    - masquerade: False
-    - ports:
-      - 10050-10051/tcp
+#public:
+#  firewalld.present:
+#    - name: public
+#    - prune_services: False
+#    - default: False
+#    - masquerade: False
+#    - ports:
+#      - 10050-10051/tcp
+
+# sudo ufw allow 8080
+
+ufw allow 8080/tcp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '8080/tcp'"
 
 ## Files 
 
