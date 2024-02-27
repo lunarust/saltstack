@@ -3,6 +3,7 @@ ufw allow 3000/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '3000/tcp'"
 
+# Grafana container files & volumes
 /opt/grafana:
   file.directory:
     - user: rust
@@ -38,9 +39,14 @@ grafana_configuration:
     - template: jinja
     - create: True
 
+# grafana nginx configuration file with upstream to container
 grafana_nginx_configuration:
   file.managed:
-    - name: /etc/nginx/grafana.conf
+    - name: /etc/nginx/conf.d/grafana.conf
     - source: salt://grafana/nginx/grafana.conf
     - template: jinja
     - create: True
+
+# reload nginx
+nginx -s reload:
+  cmd.run
