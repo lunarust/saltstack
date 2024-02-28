@@ -1,10 +1,10 @@
-version: "3"
+version: "3" ## {{ salt['pillar.get']('production') }} ###
 services:
  metabase_sandbox:
   image: metabase/metabase
   container_name: mb_sandbox
   ports:
-    - "3000:3000"
+    - "{{ salt['pillar.get']('DOCKERMBPORT') }}:3000"
   restart:  unless-stopped
   networks:
     - metabase_nw    
@@ -13,21 +13,24 @@ services:
     MB_DB_HOST: {{ salt['pillar.get']('DBHOST') }}
     MB_DB_PORT: {{ salt['pillar.get']('DBPORT') }}
     MB_DB_DBNAME: {{ salt['pillar.get']('DBNAME') }}
+    {% if salt['pillar.get']('production') == True %}    
+    MB_DB_USER_FILE: {{ salt['pillar.get']('MB_DB_USER_FILE') }}
+    MB_DB_PASS_FILE: {{ salt['pillar.get']('MB_DB_PASS_FILE') }}
+    {% else %}
     MB_DB_USER: {{ salt['pillar.get']('DBUSER') }}
     MB_DB_PASS: {{ salt['pillar.get']('DBPASS') }}
-    {% if salt['pillar.get']('production') == 'true' %}    
-    MB_DB_USER_FILE: {{ salt['pillar.get']('DBUSERFILE') }}
-    MB_DB_PASS_FILE: {{ salt['pillar.get']('DBPASSFILE') }}
+    {% endif %}
+    {% if salt['pillar.get']('production') == True %}    
   secrets:
     - db_password
     - db_user
 
-  secrets:
-   db_password:
-     file: db_password.txt
-   db_user:
-     file: db_user.txt
-    {% endif %}
+secrets:
+ db_password:
+   file: db_password.txt
+ db_user:
+   file: db_user.txt
+   {% endif %}
 
 networks:
   metabase_nw:

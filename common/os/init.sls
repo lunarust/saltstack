@@ -1,13 +1,40 @@
 # Firewall rules
+
+{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
 # Zabbix
-ufw allow 10051-10051/tcp:
-  cmd.run:
-    - unless: "ufw status verbose | grep '10051-10051/tcp'"
+zabbix_fw:
+  firewalld.present:
+    - name: public
+    - default: False
+    - masquerade: False
+    - prune_services: False
+    - ports:
+      - 10051/tcp
+      - 10050/tcp
 
 # Salt
-ufw allow 4505-4506/tcp:
+salt_fw:
+  firewalld.present:
+    - name: public
+    - default: False
+    - masquerade: False
+    - prune_services: False
+    - ports:
+      - 4505/tcp
+      - 4506/tcp
+
+{% else %}
+# Zabbix
+ufw allow 10050:10051/tcp:
   cmd.run:
-    - unless: "ufw status verbose | grep '4505-4506/tcp'"
+    - unless: "ufw status verbose | grep '10051:10051/tcp'"
+
+# Salt
+ufw allow 4505:4506/tcp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '4505:4506/tcp'"
+{% endif %}
+
 
 # Banner
 motd:
@@ -30,4 +57,5 @@ nginx:
     - running
     - enable: True
     - restart: True
+
 

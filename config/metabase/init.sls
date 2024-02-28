@@ -1,7 +1,21 @@
+{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+metabasenginx_fw:
+  firewalld.present:
+    - name: public
+    - default: False
+    - masquerade: False
+    - prune_services: False
+    - ports:
+      - {{ salt['pillar.get']('NGINXMBPORT') }}/tcp
+
+{% else %}
 # sudo ufw allow {{ salt['pillar.get']('NGINXMBPORT') }}
 ufw allow {{ salt['pillar.get']('NGINXMBPORT') }}/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '{{ salt['pillar.get']('NGINXMBPORT') }}/tcp'"
+
+
+{% endif %}
 
 # Metabase container files & volumes
 /opt/metabase:
@@ -29,3 +43,8 @@ metabase_nginx_configuration:
 # reload nginx
 nginx -s reload:
   cmd.run
+
+docker network create metabase_nw:
+  cmd.run:
+  - unless: docker network inspect metabase_nw
+
