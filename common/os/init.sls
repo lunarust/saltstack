@@ -19,7 +19,7 @@ motd:
 # Add docker group to zabbix user
 usermod -aG docker zabbix:
   cmd.run:
-    - unless: groups zabbix| grep docker
+    - unless: "groups zabbix| grep docker"
 
 ### Installation of Nginx ###
 nginx:
