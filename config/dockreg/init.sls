@@ -50,11 +50,18 @@ dockreg_docker:
     - template: jinja
     - create: True
 
+dockreg_configfile:
+  file.managed:
+    - name: /opt/dockreg/config/config.yml 
+    - source: salt://dockreg/config/config.yml
+    - template: jinja
+    - create: True
+
 # metabase nginx configuration file with upstream to container
 dockreg_nginx_configuration:
   file.managed:
     - name: /etc/nginx/conf.d/dockreg.conf
-    - source: salt://dockreg/nginx/dockreg_nginx.conf
+    - source: salt://dockreg/nginx/dockreg.conf
     - template: jinja
     - create: True
 
