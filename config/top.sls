@@ -14,6 +14,10 @@ postgres:
   'rasppi.greece.local':
      - postgres.init
 
+dockreg:
+  'rasppi.greece.local':
+     - dockreg.init
+
 metabase_production:
   'rasppi.greece.local':
      - metabase.init
@@ -21,3 +25,4 @@ metabase_production:
 metabase_staging:
   'aetes.greece.local':
      - metabase.init
+

@@ -1,7 +1,7 @@
 version: '3.7'
 
 networks:
-  registry:
+  registry_nw:
     external: false
 
 services:
@@ -29,4 +29,4 @@ services:
         "max-size": "10m"
         "max-file": "5"
     networks:
-      - registry
+      - registry_nw
