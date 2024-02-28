@@ -1,0 +1,35 @@
+version: "3"
+services:
+ metabase_sandbox:
+  image: metabase/metabase
+  container_name: mb_sandbox
+  ports:
+    - "3000:3000"
+  restart:  unless-stopped
+  networks:
+    - metabase_nw    
+  environment:
+    MB_DB_TYPE: {{ salt['pillar.get']('DBTYPE') }}
+    MB_DB_HOST: {{ salt['pillar.get']('DBHOST') }}
+    MB_DB_PORT: {{ salt['pillar.get']('DBPORT') }}
+    MB_DB_DBNAME: {{ salt['pillar.get']('DBNAME') }}
+    MB_DB_USER: {{ salt['pillar.get']('DBUSER') }}
+    MB_DB_PASS: {{ salt['pillar.get']('DBPASS') }}
+    {% if salt['pillar.get']('production') == 'true' %}    
+    MB_DB_USER_FILE: {{ salt['pillar.get']('DBUSERFILE') }}
+    MB_DB_PASS_FILE: {{ salt['pillar.get']('DBPASSFILE') }}
+  secrets:
+    - db_password
+    - db_user
+
+  secrets:
+   db_password:
+     file: db_password.txt
+   db_user:
+     file: db_user.txt
+    {% endif %}
+
+networks:
+  metabase_nw:
+    external: true
+

@@ -13,3 +13,11 @@ grafana:
 postgres:
   'rasppi.greece.local':
      - postgres.init
+
+metabase_production:
+  'rasppi.greece.local':
+     - metabase.init
+
+metabase_staging:
+  'rasppi.greece.local':
+     - metabase.init
