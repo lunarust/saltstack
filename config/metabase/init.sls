@@ -2,7 +2,15 @@
 ufw allow {{ salt['pillar.get']('NGINXMBPORT') }}/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '{{ salt['pillar.get']('NGINXMBPORT') }}/tcp'"
-    
+
+# Metabase container files & volumes
+/opt/metabase:
+  file.directory:
+    - user: rust
+    - group: docker
+    - mode: 744
+    - makedirs: True
+
 metabase_docker:
   file.managed:
     - name: /opt/metabase/docker-compose.yml
