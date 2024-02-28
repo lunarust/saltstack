@@ -16,4 +16,18 @@ motd:
     - source: salt://os/files/motd
     - template: jinja
 
-# usermod -aG docker zabbix
+# Add docker group to zabbix user
+usermod -aG docker zabbix:
+  cmd.run:
+    - unless: groups zabbix| grep docker
+
+### Installation of Nginx ###
+nginx:
+  pkg.installed:
+    - name: nginx
+    - skip_verify: True
+  service:
+    - running
+    - enable: True
+    - restart: True
+
