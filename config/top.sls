@@ -19,5 +19,5 @@ metabase_production:
      - metabase.init
 
 metabase_staging:
-  'rasppi.greece.local':
+  'aetes.greece.local':
      - metabase.init
