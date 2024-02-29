@@ -19,7 +19,7 @@ dockreg:
      - dockreg.init
 
 metabase_production:
-  'rasppi.greece.local':
+  'aetes.greece.local':
      - metabase.init
 
 metabase_staging:

@@ -1,5 +1,5 @@
 metabase_production:
-  'rasppi.greece.local':
+  'aetes.greece.local':
      - metabase_production
 
 metabase_staging:

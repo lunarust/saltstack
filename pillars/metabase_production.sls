@@ -1,5 +1,5 @@
 DBTYPE: postgres
-DBHOST: 127.0.0.1
+DBHOST: 192.168.1.111
 DBPORT: 5432
 DBNAME: metabase_production
 DBUSER: mb_sandbox
