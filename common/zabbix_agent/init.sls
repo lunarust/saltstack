@@ -16,7 +16,7 @@ ufw allow 10050:10051/tcp:
 
 zabbix-agent:
   pkg.installed:
-    - name: zabbix-agent
+    - name: zabbix-agent2
     - skip_verify: True
     - allow_updates: True
   service:
@@ -25,7 +25,7 @@ zabbix-agent:
     - restart: True
     - watch:
       - file: zabbix_conf
-      - pkg: zabbix-agent
+      - pkg: zabbix-agent2
 
 zabbix_agent_configuration:
   file.managed:
