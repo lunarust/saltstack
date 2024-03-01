@@ -43,6 +43,14 @@ motd:
     - source: salt://os/files/motd
     - template: jinja
 
+# Bash
+bashrc:
+  file.managed:
+    - name: /home/rust/.bashrc
+    - source: salt://os/files/bashrc
+    - template: jinja
+
+
 # Add docker group to zabbix user
 usermod -aG docker zabbix:
   cmd.run:

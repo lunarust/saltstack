@@ -4,7 +4,7 @@ salt:
      
 zabbix:
   'rasppi.greece.local':
-     - zabbix.init
+     - zabbix_server.init
 
 grafana:
   'rasppi.greece.local':
