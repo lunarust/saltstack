@@ -1,0 +1,13 @@
+[zabbix]
+name=Zabbix Official Repository - $basearch
+baseurl=https://repo.zabbix.com/zabbix/6.4/rhel/9/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-08EFA7DD
+
+[zabbix-non-supported]
+name=Zabbix Official Repository non-supported - $basearch
+baseurl=https://repo.zabbix.com/non-supported/rhel/9/$basearch/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-08EFA7DD
+gpgcheck=1

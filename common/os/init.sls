@@ -23,6 +23,7 @@ salt_fw:
       - 4505/tcp
       - 4506/tcp
 
+
 {% else %}
 # Zabbix
 ufw allow 10050:10051/tcp:
@@ -33,6 +34,7 @@ ufw allow 10050:10051/tcp:
 ufw allow 4505:4506/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '4505:4506/tcp'"
+
 {% endif %}
 
 
