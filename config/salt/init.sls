@@ -30,3 +30,16 @@ saltstack_scripts:
     - file_mode: '755'
     - create: True
 
+# Creating list of scripts for refresh purpose
+{% for srv in salt['pillar.get']('service_scripts') %}_saltstack_script:
+  file.managed:
+    - name: /opt/scripts/refresh-{{ srv| lower  }}.sh
+    - source: salt://salt/refresh_sh
+    - user: root
+    - group: root
+    - mode: '755'
+    - template: jinja
+    - defaults:
+        srv: {{ srv| lower  }}
+    - create: True
+{% endfor %}

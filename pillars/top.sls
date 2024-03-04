@@ -1,3 +1,8 @@
+base:
+  '*':
+    - common
+    - services
+
 metabase_production:
   'aetes.greece.local':
      - metabase_production

@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.saltproject.io/py3/debian/11/armhf/latest bullseye main
