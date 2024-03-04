@@ -10,7 +10,7 @@ docker_repo_rh:
 ## Debian
 docker_repo_db:
   file.managed:
-    - name: /etc/sources.list.d/docker.list
+    - name: /etc/apt/sources.list.d/docker.list
     - source: salt://docker/repo/docker.list
     - template: jinja
 {% endif %}
