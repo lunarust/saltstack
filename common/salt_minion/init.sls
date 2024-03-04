@@ -28,7 +28,7 @@ ufw allow 4505:4506/tcp:
 
 salt_repo_db:
   file.managed:
-    - name: /etc/sources.list.d/salt.list
+    - name: /etc/apt/sources.list.d/salt.list
     - source: salt://salt_minion/repo/salt.list
     - template: jinja
 {% endif %}
