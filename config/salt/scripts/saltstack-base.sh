@@ -25,10 +25,12 @@ echo "***** Running full OS Update for ${node}"
   salt "${node}" cmd.run 'yum list-security --security'
 
   salt "${node}" pkg.clean_metadata
-  #salt "${node}" pkg.upgrade
   salt "${node}" cmd.run 'yum -y update --nogpgcheck'
 fi
 echo "***** Running base refresh for ${node}"
 
 
-salt "${node}" state.highstate \ saltenv=base -l debug
+salt "${node}" state.highstate \ saltenv=base
+
+
+echo "Be polite and say bye..."

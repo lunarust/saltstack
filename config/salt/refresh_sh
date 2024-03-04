@@ -3,6 +3,12 @@
 me=`basename "$0"`
 today=$(date "+%Y-%m-%dT%H:%M")
 
+if [[ $EUID -ne 0 ]]; then
+  echo "Please run this script with root user"
+  exit 1
+fi
+
+
 echo "starting script $me $today"
 
 cd /srv/saltstack/

@@ -4,14 +4,14 @@
 docker_repo_rh:
   file.managed:
     - name: /etc/yum.repos.d/docker-ce.repo
-    - source: salt://docker/files/docker.repo
+    - source: salt://docker/repo/docker.repo
     - template: jinja
 {% else %}
 ## Debian
 docker_repo_db:
   file.managed:
     - name: /etc/sources.list.d/docker.list
-    - source: salt://docker/files/docker.list
+    - source: salt://docker/repo/docker.list
     - template: jinja
 {% endif %}
 
