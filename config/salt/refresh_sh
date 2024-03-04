@@ -11,7 +11,7 @@ git pull
 echo "Refreshing base"
 salt '*' state.highstate \ saltenv=base # -l debug
 
-echo "Refreshing {{ env }}"
+echo "Refreshing {{ srv }}"
 salt '*' state.highstate \ saltenv={{ srv  }} # -l debug
 
 echo "Be polite and say bye..."

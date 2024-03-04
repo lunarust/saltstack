@@ -11,7 +11,7 @@
 #      - 4505-4506/tcp
 
 ## Files 
-### Static 
+### Static
 saltstack_conf:
   file.recurse:
     - name: /etc/salt/master.d/
@@ -31,7 +31,9 @@ saltstack_scripts:
     - create: True
 
 # Creating list of scripts for refresh purpose
-{% for srv in salt['pillar.get']('service_scripts') %}_saltstack_script:
+{% for srv in salt['pillar.get']('service_scripts') %}
+{{ srv }}_saltstack_script:
+  # {{ srv }} #
   file.managed:
     - name: /opt/scripts/refresh-{{ srv| lower  }}.sh
     - source: salt://salt/refresh_sh
@@ -42,4 +44,5 @@ saltstack_scripts:
     - defaults:
         srv: {{ srv| lower  }}
     - create: True
+    - clean: True
 {% endfor %}
