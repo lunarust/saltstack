@@ -29,7 +29,7 @@ zabbix_repo_db:
     - template: jinja    
 {% endif %}
 
-zabbix-agent:
+zabbix-agent2:
   pkg.installed:
     - name: zabbix-agent2
     - skip_verify: True
@@ -39,7 +39,6 @@ zabbix-agent:
     - enable: True
     - restart: True
     - watch:
-      - file: zabbix_conf
       - pkg: zabbix-agent2
 
 zabbix_agent_configuration:
@@ -49,7 +48,3 @@ zabbix_agent_configuration:
     - template: jinja
     - create: True
 
-# Add docker group to zabbix user
-usermod -aG zabbix docker:
-  cmd.run:
-    - unless: "groups zabbix| grep docker"
