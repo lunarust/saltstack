@@ -12,7 +12,7 @@ grafana:
 
 postgres:
   'helios.greece.local':
-     - postgres.init
+     - postgresql.init
 
 dockreg:
   'rasppi.greece.local':
