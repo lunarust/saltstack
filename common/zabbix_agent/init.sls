@@ -1,4 +1,6 @@
 {% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+## All RedHat - Rocky - Alma
+### Zabbix
 zabbix_client_fw:
   firewalld.present:
     - name: public
@@ -13,10 +15,9 @@ zabbix_repo_rh:
     - name: /etc/yum.repos.d/zabbix.repo
     - source: salt://os/files/zabbix.repo
     - template: jinja
-
-
 {% else %}
-# sudo ufw allow 10050:10051
+## Debian
+### Zabbix
 ufw allow 10050:10051/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '10050:10051/tcp'"
@@ -26,8 +27,6 @@ zabbix_repo_db:
     - name: /etc/apt/sources.list.d/zabbix.list
     - source: salt://os/files/zabbix.list
     - template: jinja    
-
-
 {% endif %}
 
 zabbix-agent:
@@ -49,3 +48,8 @@ zabbix_agent_configuration:
     - source: salt://zabbix_agent/zabbix_agent2.conf
     - template: jinja
     - create: True
+
+# Add docker group to zabbix user
+usermod -aG zabbix docker:
+  cmd.run:
+    - unless: "groups zabbix| grep docker"
