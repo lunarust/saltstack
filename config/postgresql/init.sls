@@ -15,6 +15,12 @@ postgres_repo_rh:
     - name: /etc/yum.repos.d/postgres.repo
     - source: salt://postgresql/repo/postgres.repo
     - template: jinja
+
+postgres_repo_gpg_key:
+  file.managed:
+    - name: /etc/pki/rpm-gpg/PGDG-RPM-GPG-KEY-RHEL
+    - source: salt://postgresql/repo/PGDG-RPM-GPG-KEY-RHEL
+
 {% else %}
 ## Debian
 ### postgres
@@ -33,6 +39,11 @@ postgres_repo_db:
     - template: jinja
 {% endif %}
 
+# install postgres-server
+postgresql16-server:
+  pkg.installed:
+    - skip_verify: True
+    - allow_updates: True
 
 # create data directory
 /data/postgresql:
@@ -53,18 +64,34 @@ postgres_repo_db:
 # Configuration files for Postgres
 postgres_conf:
   file.recurse:
-    - name: /data/postgresql/
-    - source: salt://postgres/conf
+    - name: /data/postgresql/main/
+    - source: salt://postgresql/conf
     - user: postgres
     - group: postgres
     - file_mode: '644'
     - create: True
 
+
+postgresql.service:
+  service:
+    - running
+    - enable: True
+    - restart: True
+
+# ALTER USER postgres PASSWORD 'newsecret';
+#
+# sudo -u postgres /usr/pgsql-16/bin/initdb -D /data/postgresql/main
 # reload postgres configuration
-sudo -u postgres pg_ctl reload -D /data/postgresql/main:
+sudo -u postgres /usr/pgsql-16/bin/pg_ctl reload -D /data/postgresql/main:
   cmd.run
 
 # or 
 # sudo systemctl restart postgresql@13-main.service
 # or 
 # SELECT pg_reload_conf()
+#
+/usr/lib/systemd/system/postgresql.service:
+  file.managed:
+    - source: salt://postgresql/service/postgresql.service
+
+# Service enable & start
