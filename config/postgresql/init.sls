@@ -95,3 +95,4 @@ sudo -u postgres /usr/pgsql-16/bin/pg_ctl reload -D /data/postgresql/main:
     - source: salt://postgresql/service/postgresql.service
 
 # Service enable & start
+za8s0F423dsa#

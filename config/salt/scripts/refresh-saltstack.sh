@@ -23,8 +23,8 @@ echo "starting script $me $today"
 
 
 cd /srv/saltstack/
-git pull
-salt 'rasppi*' state.highstate \ saltenv=salt
+#git pull
+salt 'aetes*' state.highstate \ saltenv=salt
 
 echo "Checking if we need to restart the service"
 [[ "$1" == "YES" ]] && systemctl restart salt-master

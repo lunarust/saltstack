@@ -1,22 +1,25 @@
 salt:
-  'rasppi.greece.local':
+  'aetes.greece.local':
      - salt.init
      
 zabbix:
-  'rasppi.greece.local':
+  'helios.greece.local':
      - zabbix_server.init
-
-grafana:
-  'rasppi.greece.local':
-     - grafana.init
 
 postgres:
   'helios.greece.local':
      - postgresql.init
 
-dockreg:
-  'rasppi.greece.local':
-     - dockreg.init
+## Services
+
+grafana:
+  'helios.greece.local':
+     - grafana.init
+
+wazuh:
+  'aetes.greece.local':
+     - wazuh.init
+
 
 metabase_production:
   'aetes.greece.local':
@@ -26,3 +29,7 @@ metabase_staging:
   'aetes.greece.local':
      - metabase.init
 
+
+dockreg:
+  'rasppi.greece.local':
+     - dockreg.init
