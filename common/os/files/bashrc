@@ -51,3 +51,4 @@ function nonzero_return() {
 export PS1="\[\033[38;5;7m\]\u\[$(tput sgr0)\]\[\033[38;5;8m\]@\[$(tput sgr0)\]\[\033[38;5;6m\]\H\[$(tput sgr0)\]\[\033[38;5;7m\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]\[\033[38;5;7m\]:\[$(tput sgr0)\]"
 export PATH="/usr/libexec/docker/cli-plugins/:/usr/local/bin/:$PATH"
 
+export PATH="/usr/libexec/docker/cli-plugins/:/usr/local/bin/:/usr/sbin/:$PATH"

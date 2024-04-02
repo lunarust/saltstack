@@ -1,4 +1,5 @@
-{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 ### Zabbix
 zabbix_client_fw:
@@ -29,12 +30,14 @@ zabbix_repo_db:
     - template: jinja    
 {% endif %}
 
+{% if grains['fqdn'] != 'helios.greece.local' %}
 zabbix_agent_configuration:
   file.managed:
     - name: /etc/zabbix/zabbix_agent2.conf
     - source: salt://zabbix_agent/conf/zabbix_agent2.conf
     - template: jinja
     - create: True
+{% endif %}
 
 zabbix-agent2:
   pkg.installed:
@@ -50,7 +53,7 @@ zabbix-agent2:
 
 
 # Add docker group to zabbix user
-usermod -aG zabbix docker:
+usermod -aG docker zabbix:
   cmd.run:
     - unless: "groups zabbix| grep docker"
 

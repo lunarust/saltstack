@@ -1,8 +1,9 @@
 ## Firewall command
-{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
 
-### Zabbix
-zabbix_server_fw:
+### Grafana
+grafana_server_fw:
   firewalld.present:
     - name: public
     - prune_services: False
@@ -70,13 +71,13 @@ zabbix_grafana_plugin_wget:
   cmd.run:
     - names: 
       - wget -O /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip https://github.com/grafana/grafana-zabbix/releases/download/v4.4.5/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip 
-    - unless: file.exists /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip
+    - creates: /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip
 
 zabbix_grafana_plugin_unzip:
   cmd.run:
     - names:
-      - unzip /opt/grafana/data/plugin/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip -d /opt/grafana/data/plugin/
-    - unless: file.path_exists_glob('/opt/grafana/data/plugin/alexanderzobnin-zabbix-app/*')
+      - unzip /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip -d /opt/grafana/data/plugins/
+    - unless: test -d /opt/grafana/data/plugins/alexanderzobnin-zabbix-app/
 
 
 

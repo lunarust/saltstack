@@ -1,14 +1,30 @@
 ## Firewall command
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
+
+### Zabbix
+zabbix_server_fw:
+  firewalld.present:
+    - name: public
+    - prune_services: False
+    - default: False
+    - masquerade: False
+    - ports:
+      - 8080/tcp
+      - 4505-4506/tcp
+
+{% else %}
+
+# sudo ufw allow 8080
+ufw allow 8080/tcp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '8080/tcp'"
+ufw allow 4505:4506/tcp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '4505:4506/tcp'"
+{% endif %}
 
 ### Salt
-#public:
-#  firewalld.present:
-#    - name: public
-#    - prune_services: False
-#    - default: False
-#    - masquerade: False
-#    - ports:
-#      - 4505-4506/tcp
 
 ## Files 
 ### Static
@@ -46,3 +62,15 @@ saltstack_scripts:
     - create: True
     - clean: True
 {% endfor %}
+
+salt-master.service:
+  service:
+    - running
+    - enable: True
+    - restart: True
+
+salt-api.service:
+  service:
+    - running
+    - enable: True
+    - restart: True

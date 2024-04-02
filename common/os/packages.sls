@@ -1,6 +1,7 @@
 
 
-{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 {% else %}
 ## Debian based
@@ -12,6 +13,6 @@ install_extra_packages:
       - nc
       - wget
       - vim
-    - unless:
-      - which nc
-      - which wget
+      - unzip
+      - lm-sensors
+      - sudo

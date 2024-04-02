@@ -1,5 +1,6 @@
 # Docker install
-{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 docker_repo_rh:
   file.managed:
@@ -40,5 +41,3 @@ docker:
     - running
     - enable: True
     - restart: True
-    - watch:
-      - pkg: docker-ce

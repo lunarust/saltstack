@@ -1,0 +1,3 @@
+# {{ salt['grains.get']('fqdn') }}
+# {{ salt['grains.get']('os_family') }} #
+# {{ salt['grains.get']('osmajorrelease') }} #

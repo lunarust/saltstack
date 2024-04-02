@@ -1,0 +1,140 @@
+general {
+        output_format = "i3bar"
+        colors = true
+        markup = pango
+        interval = 5
+        # separator = "  "
+        separator = false
+        color_good = "#383830"
+        color_bad = "#383830"
+        color_degraded = "#383830"        
+}
+order += "read_file wobblealert"
+order += "read_file pkg_update"
+order += "load"
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "disk /home"
+#order += "ethernet _first_"
+order += "wireless _first_"
+order += "volume master"
+order += "battery all"
+order += "read_file uptime"
+order += "tztime local"
+order += "tztime UTC"
+
+load {
+        format = "<span background='#f7dc6f'>   %5min  </span>"
+        separator_block_width = 0
+}
+
+cpu_temperature 0 {
+        format = "<span background='#f59335'>   %degrees °C  </span>"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+        separator_block_width = 0
+}
+
+cpu_usage {
+        format = "<span background='#f59335'>  %usage  </span>"
+        separator_block_width = 0   
+}
+
+memory {
+        memory_used_method = classical
+        format="<span background='#f39c12'>   %used </span>"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+        separator_block_width = 0
+}
+
+disk "/" {
+        format = "<span background='#fcc009'>   %free / %used  </span>"
+        separator_block_width = 0
+}
+
+disk "/home" {
+        format = "<span background='#86da2f'>   %free / %used  </span>"
+        separator_block_width = 0
+}
+
+ethernet _first_ {
+        format_up = "<span background='#88c0d0'>   %ip (%speed) </span>"
+        format_down = "<span background='#ba5e57'>  </span>"
+        separator_block_width = 0
+}
+
+wireless _first_ {
+        #format_up = "<span background='#CF119F'>   [%quality @%essid / %frequency] %ip  </span>"
+        format_up = "<span background='#CF119F'>   [%quality @%essid]  </span>"        
+        format_down = "<span background='#FA77D9'>    </span>"
+        separator_block_width = 0
+}
+
+run_watch VPN {
+        pidfile = "/var/run/vpnc/pid"
+}
+
+run_watch VPNC {
+        # file containing the PID of a vpnc process
+        pidfile = "/var/run/vpnc/pid"
+        #format_down = "<span background='#88c0d0'> down </span>"
+        #format_up = "<span > up </span>"
+}       
+
+volume master {
+        format = "<span background='#EDD400'>   %volume  </span>"
+        format_muted = "<span background='#C4A000'>    </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+        separator_block_width = 0
+}
+
+battery all {
+        last_full_capacity = true
+        integer_battery_capacity = true
+        format = "<span background='#73D216'> %status %percentage  </span>"
+        format_down = " No Battery"
+        status_chr = "  Charging (%emptytime %consumption)"
+        status_bat = "  Battery"
+        status_unk = " Unknown"
+        status_full = " "
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 15
+        separator_block_width = 0
+}
+
+tztime local {
+        format = "<span background='#2A9Dc6'>   %Y-%m-%d  %Z %H:%M  </span>"
+        separator_block_width = 0        
+}
+
+tztime UTC {
+        format = "<span background='#5dade2'>   %Z %H:%M:%S  </span>"
+        timezone = "UTC"
+        separator_block_width = 0
+}
+
+# Short uptime with format H:MM
+# Cron: */15 * * * * uptime | awk ' { gsub(",",""); print $3 }' >| ~/.config/i3/uptime 
+read_file uptime {
+        path = "~/.config/i3/uptime"
+        format = "<span background='#2874a6'>   %content  </span>"
+        separator_block_width = 0
+}
+
+# Count of available update 
+# Cron: 15 */2 * * * yum -q check-update | sed '/^$/d' | wc -l >| ~/.config/i3/pkgupdate
+read_file pkg_update {
+        path = "~/.config/i3/pkgupdate"
+        format = "<span background='#24c2ff'>   %content  </span>"
+        separator_block_width = 0
+}
+
+read_file wobblealert {
+        path = "~/.config/i3/alerti3"
+        format = "%content"
+        separator_block_width = 0
+}

@@ -1,1 +1,2 @@
 /pillars/secret.sls
+/config/jenkins/docker/.env

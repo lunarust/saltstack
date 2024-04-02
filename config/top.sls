@@ -20,6 +20,9 @@ wazuh:
   'aetes.greece.local':
      - wazuh.init
 
+jenkins:
+  'helios.greece.local':
+    - jenkins.init
 
 metabase_production:
   'aetes.greece.local':
@@ -29,6 +32,11 @@ metabase_staging:
   'aetes.greece.local':
      - metabase.init
 
+i3:   #'(gumbys|aetes).greece.local':
+  'aetes*':
+    - i3.init
+  'gumbys*':
+    - i3.init
 
 dockreg:
   'rasppi.greece.local':

@@ -1,4 +1,5 @@
-{% if grains.os_family == 'RedHat' and grains.osmajorrelease >= 6 %}
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+# and grains.osmajorrelease >= 6 %}
 metabasenginx_fw:
   firewalld.present:
     - name: public

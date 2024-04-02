@@ -4,3 +4,5 @@ service_scripts:
   - postgres
   - metabase
   - dockreg
+  - jenkins
+  

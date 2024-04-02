@@ -24,6 +24,8 @@ echo "starting script $me $today"
 
 cd /srv/saltstack/
 #git pull
+
+cp -rf /srv/saltstack/config/salt/config /etc/salt/master.d/
 salt 'aetes*' state.highstate \ saltenv=salt
 
 echo "Checking if we need to restart the service"

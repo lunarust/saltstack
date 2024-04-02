@@ -22,3 +22,9 @@ GRANT
 zabbix=# GRANT ALL ON ALL TABLES IN SCHEMA public TO zabbix;
 GRANT
 zabbix=# GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO zabbix;
+
+
+WIFI
+nmcli radio wifi on
+nmcli dev wifi list
+sudo nmcli dev wifi connect network-ssid password "network-password"

@@ -1,0 +1,165 @@
+# set modifier
+set $super Mod4
+set $alt Mod1
+
+# set font
+font pango: Noto Sans 10
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+#autostart
+#exec --no-startup-id hsetroot -center ~/.wallpaper.png
+#exec --no-startup-id xsettingsd &
+exec --no-startup-id compton -b
+exec --no-startup-id feh --bg-scale ~/james_lock.png
+#exec --no-startup-id eval 'cat ~/.fehbg'
+
+# start a terminal
+bindsym $super+Return exec terminator
+
+# start dmenu (a program launcher)
+bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=10'"
+bindsym $super+d exec rofi -lines 12 -padding 18 -width 90 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+
+# common apps keybinds
+#bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
+bindsym $super+l exec i3lock -i ~/runaway_black_hole_desktop_1920.png
+bindsym $super+Shift+w exec firefox
+bindsym $super+Shift+f exec thunar;workspace 3;focus
+bindsym $super+Shift+g exec geany
+bindsym Print exec flameshot
+#change volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+#Sreen brightness controls
+#bindsym XF86MonBrightnessUp exec echo $((`cat /sys/class/backlight/intel_backlight/brightness` + 10)) | sudo tee /sys/class/backlight/intel_backlight/brightness
+#bindsym XF86MonBrightnessDown exec echo $((`cat /sys/class/backlight/intel_backlight/brightness` - 10)) | sudo tee /sys/class/backlight/intel_backlight/brightnes
+
+
+# music control
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+
+# kill focused window
+bindsym $super+c kill
+#bindsym $alt+F4 kill
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move focused window
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+#bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $super+h split h
+
+# split in vertical orientation
+bindsym $super+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# change container layout split
+bindsym $super+s layout toggle split
+
+# toggle tiling / floating
+bindsym $super+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+bindsym $super+1 workspace 1 console
+bindsym $super+2 workspace 2 git;
+bindsym $super+3 workspace 3 web; layout tabbed;
+bindsym $super+4 workspace 4 aaa; layout tabbed; 
+bindsym $super+5 workspace 5 db; layout tabbed;
+bindsym $super+6 workspace 6 work;
+bindsym $super+7 workspace 7 graphism; layout tabbed;
+bindsym $super+8 workspace 8 notes; layout tabbed;
+bindsym $super+9 workspace 9 keepass;
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1 console
+bindsym $super+Shift+2 move container to workspace 2 git
+bindsym $super+Shift+3 move container to workspace 3 web
+bindsym $super+Shift+4 move container to workspace 4 aaa
+bindsym $super+Shift+5 move container to workspace 5 db
+bindsym $super+Shift+6 move container to workspace 6 work
+bindsym $super+Shift+7 move container to workspace 7 graphism
+bindsym $super+Shift+8 move container to workspace 8 notes
+bindsym $super+Shift+9 move container to workspace 9 keepass
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+# exit i3
+bindsym $super+q exec "i3-nagbar -t error -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# panel
+bar {
+        status_command i3status
+
+        colors {
+        background #2f343f
+        statusline #2f343f
+        separator  #4b5262
+
+        # colour of border, background, and text
+        focused_workspace       #2f343f #4E9A06 #d8dee8
+        active_workspace        #2f343f #2f343f #d8dee8
+        inactive_workspace      #2f343f #2f343f #d8dee8
+        urgent_workspace        #2f343f #BAE234 #2f343f
+    }
+}
+
+# window rules, you can find the window class using xprop
+for_window [class=".*"] border pixel 0
+assign [class="console"] 1
+assign [class="git"] 2 git
+assign [class="web"] 3 web
+assign [class="aaa"] 4 aaa
+assign [class="db"] 5 db
+assign [class="work"] 6 work
+assign [class="graphism"] 7 graphism
+assign [class="notes"] 8 notes
+assign [class="keepass"] 9 keepass
+assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
+for_window [class=Viewnior|feh|Audacious|element|File-roller|Lxappearance|Lxtask|Pavucontrol|notes] floating enable
+for_window [class=URxvt|Console|atom] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #2f343f #4E9A06 #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #555753 #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #8AE234 #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+exec --no-startup-id i3-msg 'workspace 1 console; exec terminator'
+exec --no-startup-id i3-msg 'workspace 2 git; exec /usr/bin/subl'
