@@ -39,6 +39,18 @@ motd:
 #    - source: salt://os/files/bashrc
 #    - template: jinja
 
+{% if grains['fqdn'] in ['helios.greece.local', 'bors.greece.local'] %}
+
+# Bash customization only for pies
+/etc/profile.d/custom_prompt.sh:
+  file.managed:
+    - source: salt://os/files/custom_prompt.sh
+
+/etc/profile.d/custom_histformat.sh:
+  file.managed:
+    - source: salt://os/files/custom_histformat.sh     
+
+{% endif %}
 
 {% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
 # and grains.osmajorrelease >= 6 %}

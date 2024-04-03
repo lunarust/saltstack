@@ -1,5 +1,5 @@
 salt:
-  'aetes.greece.local':
+  'bors.greece.local':
      - salt.init
      
 zabbix:

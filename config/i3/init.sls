@@ -25,9 +25,10 @@ yum -q check-update | sed '/^$/d' | wc -l >| ~/.config/i3/pkgupdate:
 
 
 {% if grains['fqdn'] == 'gumbys.greece.local' %}
-cd /opt/scripts/ && ./wobblealert:
+cd /opt/scripts/ && ./wobblealert >> /var/log/scripts/wobblealert 2>&1:
   cron.present:
     - identifier: Check_Wobbles
     - user: rust
+    - minute: '7'
     - hour: '*/2'
 {% endif %}    
