@@ -6,6 +6,10 @@ tududi:
   'bors.greece.local':
     - tududi.init
 
+graylog:
+  'helios.greece.local':
+    - graylog.init
+
 zabbix:
   'helios.greece.local':
      - zabbix_server.init
