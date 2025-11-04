@@ -1,0 +1,33 @@
+upstream tududi {
+        server {{ salt['grains.get']('fqdn_ip4')[0] }}:{{ salt['pillar.get']('tududi_container_port') }}; # for  redirection to docker image
+}
+
+server {
+
+        listen       {{ salt['pillar.get']('tududi_nginx_port') }};
+        server_name  {{ salt['grains.get']('fqdn_ip4')[0] }} {{ salt['grains.get']('fqdn') }} localhost;
+        charset      utf-8;
+
+        access_log                /var/log/nginx/nginx_tududi.access.log;
+        error_log                 /var/log/nginx/nginx_tududi.errors.log info;
+
+        location /
+        {
+            proxy_pass            http://tududi;
+            proxy_redirect        off;
+            proxy_set_header      Host            $http_host;
+            proxy_set_header      X-Real-IP       $remote_addr;
+            proxy_set_header      X_Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_connect_timeout 600;
+            proxy_read_timeout    600;
+            proxy_send_timeout    600;
+
+            # access_log on;
+            access_log   /var/log/nginx/nginx_tududi_container.access.log;
+            error_log   /var/log/nginx/nginx_tududi_container.errors.log info;
+        }
+
+        location ~ /\. {
+            deny  all;
+        }
+}

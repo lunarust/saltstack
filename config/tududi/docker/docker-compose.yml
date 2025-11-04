@@ -1,0 +1,19 @@
+#https://github.com/chrisvel/tududi
+version: '3.8'
+services:
+  tududi:
+    image: "chrisvel/tududi:latest"
+    container_name: tududi
+    volumes:
+      - "./db:/app/backend/db"
+      - "./uploads:/app/backend/uploads"
+    restart: always
+    ports:
+      - "{{ salt['pillar.get']('tududi_container_port') }}:{{ salt['pillar.get']('tududi_container_port') }}"
+    environment:
+      - TUDUDI_USER_EMAIL={{ salt['pillar.get']('tududi_user_email') }}
+      - TUDUDI_USER_PASSWORD={{ salt['pillar.get']('tududi_user_password') }}
+      - TUDUDI_SESSION_SECRET=your-generated-secret-here
+      - TUDUDI_ALLOWED_ORIGINS={{ salt['pillar.get']('tududi_allowed_origins') }}
+      - PUID={{ salt['pillar.get']('tududi_uid') }}
+      - GUID={{ salt['pillar.get']('tududi_uid') }}

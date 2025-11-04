@@ -1,7 +1,11 @@
 salt:
   'bors.greece.local':
      - salt.init
-     
+
+tududi:
+  'bors.greece.local':
+    - tududi.init
+
 zabbix:
   'helios.greece.local':
      - zabbix_server.init
