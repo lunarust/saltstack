@@ -1,4 +1,6 @@
-#https://github.com/chrisvel/tududi
+# Task and projects organizer.
+# https://github.com/chrisvel/tududi
+# https://docs.tududi.com/getting-started/configuration
 version: '3.8'
 services:
   tududi:
