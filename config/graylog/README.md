@@ -26,7 +26,7 @@ Simply replace the service image to mongodb-raspberrypi4-unofficial-r7.0.4:lates
 
 ## Graylog start
 
-Once graylog starts the first time it will provide you with creadentials to create and dispatch a certificate.
+Once Graylog starts the first time it will provide you with credentials to create and dispatch a certificate.
 
 
 # SYSLOG
@@ -34,6 +34,7 @@ Once graylog starts the first time it will provide you with creadentials to crea
 ## Graylog configuration
 
 Input: SysLOGUDP
+
 ![New Input](../../screenshots/GRAYLOG-SYSLOGUDPInputsCreation.png)
 
 Indice: SysLOGIndex
@@ -41,11 +42,13 @@ Indice: SysLOGIndex
 ![New Input](../../screenshots/GRAYLOG-SYSLOGUDPIndexCreation.png)
 
 Stream: SYSLOG
+
 ![New Input](../../screenshots/GRAYLOG-SYSLOGUDPStreamCreation.png)
 
 Start your input.
 
 Check your stream:
+
 ![New Input](../../screenshots/GRAYLOG-SYSLOGUDP_CheckEntries.png)
 
 
@@ -72,14 +75,14 @@ tcpdump -i any -v "port 5140"
 
 # TODO
 
-[] Remaining exceptions
-[] Configuration streams & Inputs
-
+- [ ] Remaining exceptions
+- [x] Configuration streams & Inputs
+- [ ] Create Dashboard
 
 Reference:
-[Graylog doc](https://go2docs.graylog.org/current/home.htm)
-[Graylog repository](https://github.com/Graylog2)
-[Graylog docker-compose repo](https://github.com/Graylog2/docker-compose)
+- [Graylog doc](https://go2docs.graylog.org/current/home.htm)
+- [Graylog repository](https://github.com/Graylog2)
+- [Graylog docker-compose repo](https://github.com/Graylog2/docker-compose)
 
 Custom MongoDB:
-[MongoDB themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
+- [MongoDB themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
