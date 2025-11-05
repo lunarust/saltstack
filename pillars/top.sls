@@ -26,3 +26,8 @@ metabase_staging:
 tududi:
   'bors.greece.local':
     - tududi
+    - secret
+
+graylog:
+  'helios.greece.local':
+    - graylog
