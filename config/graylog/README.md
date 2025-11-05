@@ -28,7 +28,49 @@ Simply replace the service image to mongodb-raspberrypi4-unofficial-r7.0.4:lates
 
 Once graylog starts the first time it will provide you with creadentials to create and dispatch a certificate.
 
-## TODO
+
+# SYSLOG
+
+## Graylog configuration
+
+Input: SysLOGUDP
+![New Input](../../screenshots/GRAYLOG-SYSLOGUDPInputsCreation.png)
+
+Indice: SysLOGIndex
+
+![New Input](../../screenshots/GRAYLOG-SYSLOGUDPIndexCreation.png)
+
+Stream: SYSLOG
+![New Input](../../screenshots/GRAYLOG-SYSLOGUDPStreamCreation.png)
+
+Start your input.
+
+Check your stream:
+![New Input](../../screenshots/GRAYLOG-SYSLOGUDP_CheckEntries.png)
+
+
+
+## Setup the hosts
+
+On hosts add syslog redirection to graylog in /etc/rsyslog.d/60-graylog.conf
+
+```bash
+*.*@192.168.1.207:5140;RSYSLOG_SyslogProtocol23Format
+```
+
+Allow Selinux to use port 5140
+```bash
+
+semanage port -a -t syslogd_port_t -p tcp 5140:
+```
+
+Check traffic:
+
+```bash
+tcpdump -i any -v "port 5140"
+```
+
+# TODO
 
 [] Remaining exceptions
 [] Configuration streams & Inputs
