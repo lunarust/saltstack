@@ -60,21 +60,29 @@ ufw allow {{ salt['pillar.get']('graylog_nginx_port') }},5044,5140,5555,12201,13
 
 /opt/graylog/mongodb_data:
   file.directory:
+    - user: systemd-coredump
+    - group: root
     - mode: 744
     - makedirs: True
 
 /opt/graylog/mongodb_config:
   file.directory:
+    - user: systemd-coredump
+    - group: root
     - mode: 744
     - makedirs: True
 
 /opt/graylog/graylog-datanode:
   file.directory:
+    - user: systemd-coredump
+    - group: input
     - mode: 744
     - makedirs: True
 
 /opt/graylog/graylog_data:
   file.directory:
+    - user: 1100
+    - group: 1100
     - mode: 744
     - makedirs: True
 

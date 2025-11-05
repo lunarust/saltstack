@@ -8,9 +8,11 @@ services:
     restart: "on-failure"
     networks:
       - graylog_nw
+    ports:
+      - "0.0.0.0:27017:27017/tcp"      
     volumes:
-      - "mongodb_data:/data/db"
-      - "mongodb_config:/data/configdb"
+      - "/opt/graylog/mongodb_data:/data/db"
+      - "/opt/graylog/mongodb_config:/data/configdb"
 
   # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
   # Please take a look at the README at the top of this repo or the regular docs for more info.
@@ -41,7 +43,7 @@ services:
     networks:
       - graylog_nw
     volumes:
-      - "graylog-datanode:/var/lib/graylog-datanode"
+      - "/opt/graylog/graylog-datanode:/var/lib/graylog-datanode"
     restart: "on-failure"
 
   # Graylog: https://hub.docker.com/r/graylog/graylog-enterprise
@@ -77,7 +79,7 @@ services:
     networks:
       - graylog_nw
     volumes:
-      - "graylog_data:/usr/share/graylog/data/data"
+      - "/opt/graylog/graylog_data:/usr/share/graylog/data/data"
     restart: "on-failure"
 
 networks:
