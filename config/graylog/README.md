@@ -81,8 +81,8 @@ tcpdump -i any -v "port 5140"
 
 Reference:
 - [Graylog doc](https://go2docs.graylog.org/current/home.htm)
-- [Graylog repository](https://github.com/Graylog2)
-- [Graylog docker-compose repo](https://github.com/Graylog2/docker-compose)
+- [Graylog :octocat: repository](https://github.com/Graylog2)
+- [Graylog :octocat: docker-compose repo](https://github.com/Graylog2/docker-compose)
 
 Custom MongoDB:
-- [MongoDB themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
+- [MongoDB :octocat: themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
