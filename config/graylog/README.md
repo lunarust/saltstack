@@ -80,9 +80,9 @@ tcpdump -i any -v "port 5140"
 - [ ] Create Dashboard
 
 Reference:
-- [Graylog doc](https://go2docs.graylog.org/current/home.htm)
-- [Graylog :octocat: repository](https://github.com/Graylog2)
-- [Graylog :octocat: docker-compose repo](https://github.com/Graylog2/docker-compose)
+- [:books: Graylog doc](https://go2docs.graylog.org/current/home.htm)
+- [:octocat: Graylog repository](https://github.com/Graylog2)
+- [:octocat: Graylog docker-compose repo](https://github.com/Graylog2/docker-compose)
 
 Custom MongoDB:
-- [MongoDB :octocat: themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
+- [:octocat: MongoDB themattman](https://github.com/themattman/mongodb-raspberrypi-docker)
