@@ -1,0 +1,41 @@
+// Catch ssh logon user
+// If facility is security/authorization [facility_num = 10]
+// ALMA doesn't ship application name, adding manually
+
+rule "gl_mapping_syslog_auth_user_ssh_failed"
+when
+  ( has_field("facility") &&
+    to_string($message."facility") == "security/authorization"
+  )
+  AND
+  (
+    contains(to_string($message.full_message), "sshd") == true
+   )
+   AND (contains(to_string($message.message), "invalid user") == true )
+
+then
+  set_field(
+    field : "GL_USEREVENT",
+    value : "LOGON"
+   );
+   //let re = "\\s(\\w+)\\(";
+   //let re = "(?<= invalid user ).*?(?=\\s)";
+   let re = "user\\s(\\w+)";
+   let ou = regex(re, to_string($message.message));
+
+   set_field(
+   field: "GL_USER",
+   value: to_string(ou["0"])
+   );
+
+   set_field(
+   field: "GL_APPLICATION",
+   value: "sshd"
+   );
+
+   set_field(
+   field: "GL_OUTPUT",
+   value: "FAILED"
+   );
+
+end
