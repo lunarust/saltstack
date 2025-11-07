@@ -1,6 +1,6 @@
 
 
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 {% else %}
@@ -16,3 +16,4 @@ install_extra_packages:
       - unzip
       - lm-sensors
       - sudo
+      - htop

@@ -73,8 +73,8 @@ services:
     - "0.0.0.0:5140:5140/tcp"   # Syslog
     - "0.0.0.0:5555:5555/tcp"   # RAW TCP
     - "0.0.0.0:5555:5555/udp"   # RAW UDP
-    #- "0.0.0.0:12201:12201/tcp" # GELF TCP
-    #- "0.0.0.0:12201:12201/udp" # GELF UDP
+    - "0.0.0.0:12201:12201/tcp" # GELF TCP
+    - "0.0.0.0:12201:12201/udp" # GELF UDP
     - "0.0.0.0:13301:13301/tcp" # Forwarder data
     - "0.0.0.0:13302:13302/tcp" # Forwarder config
     - "0.0.0.0:9000:9000/tcp"   # Server API

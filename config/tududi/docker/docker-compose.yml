@@ -19,3 +19,8 @@ services:
       - TUDUDI_ALLOWED_ORIGINS={{ salt['pillar.get']('tududi_allowed_origins') }}
       - PUID={{ salt['pillar.get']('tududi_uid') }}
       - GUID={{ salt['pillar.get']('tududi_uid') }}
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://{{ salt['pillar.get']('gelf_logback_address') }}:{{ salt['pillar.get']('gelf_logback_port') }}"
+        tag: "TUD"
