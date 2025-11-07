@@ -9,7 +9,7 @@ services:
     networks:
       - graylog_nw
     ports:
-      - "0.0.0.0:27017:27017/tcp"      
+      - "0.0.0.0:27017:27017/tcp"
     volumes:
       - "/opt/graylog/mongodb_data:/data/db"
       - "/opt/graylog/mongodb_config:/data/configdb"
@@ -62,8 +62,10 @@ services:
       GRAYLOG_PASSWORD_SECRET: ${GRAYLOG_PASSWORD_SECRET}
       GRAYLOG_ROOT_PASSWORD_SHA2: ${GRAYLOG_ROOT_PASSWORD_SHA2}
       GRAYLOG_HTTP_BIND_ADDRESS: "0.0.0.0:9000"
-      GRAYLOG_HTTP_EXTERNAL_URI: "{{ salt['pillar.get']('graylog_allowed_origins') }}/"
-      GRAYLOG_HTTP_PUBLISH_URI: "{{ salt['pillar.get']('graylog_allowed_origins') }}/"
+      #GRAYLOG_HTTP_EXTERNAL_URI: "{{ salt['pillar.get']('graylog_allowed_origins') }}/"
+      #GRAYLOG_HTTP_PUBLISH_URI: "{{ salt['pillar.get']('graylog_allowed_origins') }}/"
+      #GRAYLOG_HTTP_PUBLISH_URI: "http://localhost:9000/"
+      GRAYLOG_HTTP_EXTERNAL_URI: "http://localhost:9000/"
       GRAYLOG_MONGODB_URI: "mongodb://mongodb:27017/graylog"
     ports:
     - "0.0.0.0:5044:5044/tcp"   # Beats
@@ -71,11 +73,13 @@ services:
     - "0.0.0.0:5140:5140/tcp"   # Syslog
     - "0.0.0.0:5555:5555/tcp"   # RAW TCP
     - "0.0.0.0:5555:5555/udp"   # RAW UDP
-    - "0.0.0.0:9000:9000/tcp"   # Server API
-    - "0.0.0.0:12201:12201/tcp" # GELF TCP
-    - "0.0.0.0:12201:12201/udp" # GELF UDP
+    #- "0.0.0.0:12201:12201/tcp" # GELF TCP
+    #- "0.0.0.0:12201:12201/udp" # GELF UDP
     - "0.0.0.0:13301:13301/tcp" # Forwarder data
     - "0.0.0.0:13302:13302/tcp" # Forwarder config
+    - "0.0.0.0:9000:9000/tcp"   # Server API
+    #- "0.0.0.0:1514:514/tcp" # SYSLOG
+    #- "0.0.0.0:1514:514/udp" # SYSLOG
     networks:
       - graylog_nw
     volumes:

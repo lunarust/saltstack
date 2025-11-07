@@ -1,0 +1,46 @@
+// Catch switch user
+// If facility is security/authorization [facility_num = 10] && pam_unix
+// ALMA doesn't ship application name, adding manually
+//
+
+rule "gl_mapping_syslog_auth_user_su_success"
+when
+  ( has_field("facility") &&
+    to_string($message."facility") == "security/authorization"
+  )
+  AND
+  (
+    contains(to_string($message.full_message), "pam_unix(su:session): session opened") == true
+  )
+
+then
+  set_field(
+    field : "GL_USEREVENT",
+    value : "SU"
+   );
+   let re = "\\suser\\s(\\w+)";
+   let reto = "\\sby\\s(\\w+)";
+   let outo = regex(re, to_string($message.message));
+   let ou = regex(reto, to_string($message.message));
+
+   set_field(
+   field: "GL_USER",
+   value: to_string(ou["0"])
+   );
+
+   set_field(
+   field: "GL_USERTO",
+   value: to_string(outo["0"])
+   );
+
+   set_field(
+   field: "GL_APPLICATION",
+   value: "su"
+   );
+
+   set_field(
+   field: "GL_OUTPUT",
+   value: "SUCCESS"
+   );
+
+end

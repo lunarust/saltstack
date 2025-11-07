@@ -1,0 +1,17 @@
+rule "gl_mapping_syslog_level_matrix"
+when
+  has_field(
+    field : "level"
+  )
+then
+  let output_1 = expand_syslog_priority_as_string(get_field(
+    field : "level"
+    )
+
+  );
+
+	set_fields(
+	{GL_SEVERITY: output_1.level,
+	GL_FACILITY: output_1.facility});
+
+end

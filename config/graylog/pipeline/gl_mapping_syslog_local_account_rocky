@@ -1,0 +1,53 @@
+// Catch switch user
+// If facility is security/authorization [facility_num = 10] && pam_unix
+// ALMA doesn't ship application name, adding manually
+//
+
+rule "gl_mapping_syslog_local_account_rocky"
+when
+  ( has_field("facility") &&
+    to_string($message."facility") == "security/authorization"
+  )
+  AND
+  ( has_field("application_name") )
+  AND
+  (
+    to_string(to_string($message.application_name)) == "useradd"
+    OR
+    to_string(to_string($message.application_name)) == "userdel"
+    OR
+    to_string(to_string($message.application_name)) == "usermod"
+  )
+
+then
+  set_field(
+    field : "GL_USEREVENT",
+    value : "SU"
+   );
+   let re = "\\suser\\s(\\w+)";
+   let ou = regex(re, to_string($message.message));
+
+   set_field(
+   field: "GL_USER",
+   value: to_string(ou["0"])
+   );
+
+   let reto = "(?:delete\\s'|add\\s'|\\sname=)(\\w+)";
+   let outo = regex(reto, to_string($message.message));
+
+   set_field(
+   field: "GL_USERTO",
+   value: to_string(outo["0"])
+   );
+
+   set_field(
+   field: "GL_APPLICATION",
+   value: $message.application_name
+   );
+
+   set_field(
+   field: "GL_OUTPUT",
+   value: "SUCCESS"
+   );
+
+end

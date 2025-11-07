@@ -1,0 +1,38 @@
+rule "gl_mapping_syslog_auth_user_sudo_failed"
+when
+  ( has_field("facility_num") &&
+    to_string($message."facility_num") == "10"
+  )
+  AND
+  contains(
+  value: to_string($message."message"),
+  search: "password check failed")
+
+  then
+    set_field(
+      field : "GL_USEREVENT",
+      value : "SUDO"
+     );
+     let re = "\\((.*?)\\)";
+     let ou = regex(re, to_string($message."message"));
+
+     set_field(
+     field: "GL_USER",
+     value: to_string(ou["0"])
+     );
+
+     set_field(
+     field: "GL_APPLICATION",
+     value: "sudo"
+     );
+
+     set_field(
+     field: "GL_USERTO",
+     value: "root"
+     );
+
+     set_field(
+     field: "GL_OUTPUT",
+     value: "FAILED"
+     );
+  end
