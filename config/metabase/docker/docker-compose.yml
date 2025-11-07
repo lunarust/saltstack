@@ -7,23 +7,28 @@ services:
     - "{{ salt['pillar.get']('DOCKERMBPORT') }}:3000"
   restart:  unless-stopped
   networks:
-    - metabase_nw    
+    - metabase_nw
   environment:
     MB_DB_TYPE: {{ salt['pillar.get']('DBTYPE') }}
     MB_DB_HOST: {{ salt['pillar.get']('DBHOST') }}
     MB_DB_PORT: {{ salt['pillar.get']('DBPORT') }}
     MB_DB_DBNAME: {{ salt['pillar.get']('DBNAME') }}
-    {% if salt['pillar.get']('production') == True %}    
+    {% if salt['pillar.get']('production') == True %}
     MB_DB_USER_FILE: {{ salt['pillar.get']('MB_DB_USER_FILE') }}
     MB_DB_PASS_FILE: {{ salt['pillar.get']('MB_DB_PASS_FILE') }}
     {% else %}
     MB_DB_USER: {{ salt['pillar.get']('DBUSER') }}
     MB_DB_PASS: {{ salt['pillar.get']('DBPASS') }}
     {% endif %}
-    {% if salt['pillar.get']('production') == True %}    
+    {% if salt['pillar.get']('production') == True %}
   secrets:
     - db_password
     - db_user
+  logging:
+    driver: "gelf"
+    options:
+      gelf-address: "tcp://{{ salt['pillar.get']('gelf_logback_address') }}:{{ salt['pillar.get']('gelf_logback_port') }}"
+      tag: "MB"
 
 secrets:
  db_password:
@@ -35,4 +40,3 @@ secrets:
 networks:
   metabase_nw:
     external: true
-

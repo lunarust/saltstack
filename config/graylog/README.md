@@ -130,6 +130,18 @@ rust : 1 incorrect password attempt ; TTY=pts/1 ; PWD=/root ; USER=root ; COMMAN
 
 See to push GELF logs from any / either app
 
+## Test one app
+
+Set up container to ship gelf
+opened firewalld
+created input, Indice & stream
+
+check
+tcpdump -i any -v "port 12201"
+we get traffic
+
+nothing in graylog...
+
 # TODO
 
 - [ ] Remaining exceptions

@@ -14,6 +14,7 @@ services:
       - "/opt/graylog/mongodb_data:/data/db"
       - "/opt/graylog/mongodb_config:/data/configdb"
 
+
   # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
   # Please take a look at the README at the top of this repo or the regular docs for more info.
   # Graylog Data Node: https://hub.docker.com/r/graylog/graylog-datanode
@@ -45,6 +46,7 @@ services:
     volumes:
       - "/opt/graylog/graylog-datanode:/var/lib/graylog-datanode"
     restart: "on-failure"
+
 
   # Graylog: https://hub.docker.com/r/graylog/graylog-enterprise
   graylog:

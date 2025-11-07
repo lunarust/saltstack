@@ -43,6 +43,7 @@ graylognginx_fw:
       - 13302/tcp
       - 1514/tcp
       - 12201/udp
+      - 12201/tcp
 
 {% else %}
 # sudo ufw allow {{ salt['pillar.get']('graylog_nginx_port') }}

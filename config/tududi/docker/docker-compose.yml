@@ -22,5 +22,5 @@ services:
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://{{ salt['pillar.get']('gelf_logback_address') }}:{{ salt['pillar.get']('gelf_logback_port') }}"
+        gelf-address: "tcp://{{ salt['pillar.get']('gelf_logback_address') }}:{{ salt['pillar.get']('gelf_logback_port') }}"
         tag: "TUD"
