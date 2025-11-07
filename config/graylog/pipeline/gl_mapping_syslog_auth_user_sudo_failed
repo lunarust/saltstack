@@ -27,6 +27,11 @@ when
      );
 
      set_field(
+     field: "GL_USERTO",
+     value: "root"
+     );
+
+     set_field(
      field: "GL_OUTPUT",
      value: "FAILED"
      );
