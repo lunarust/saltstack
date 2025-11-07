@@ -76,6 +76,9 @@ tcpdump -i any -v "port 5140"
 
 ## SYSLOG Dashboard
 
+![Dashboard sys events](../../screenshots/GRAYLOG-SYSLOG-Dashboard_1.png)
+
+
 ### Events to catch
 
 - Account Create / Delete
@@ -131,7 +134,7 @@ See to push GELF logs from any / either app
 
 - [ ] Remaining exceptions
 - [x] Configuration streams & Inputs
-- [ ] Create Dashboard ~ Pipeline ?
+- [x] Create Dashboard ~ Pipeline ?
 
 Reference:
 - [:books: Graylog doc](https://go2docs.graylog.org/current/home.htm)
