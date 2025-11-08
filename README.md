@@ -39,8 +39,12 @@ docker system prune --all --force
 
 ## Salt
 
+[Setup README](config/salt/README.md)
+
+Documentation:
 - [Install](https://www.tutorialspoint.com/saltstack/saltstack_installation.htm)
-- [Repo change](https://saltproject.io/blog/salt-project-package-repo-migration-and-guidance/)
+- [New repository](https://saltproject.io/blog/salt-project-package-repo-migration-and-guidance/)
+
 
 Configuration and setup:
 

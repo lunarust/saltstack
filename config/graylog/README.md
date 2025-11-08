@@ -1,3 +1,11 @@
+# TODO
+
+- [x] Remaining exceptions
+- [x] Configuration streams & Inputs
+- [x] Create Dashboard ~ Pipeline ?
+- [ ] Functionality to export dashboard is not available anymore, need to see and build an export from mongodb
+
+
 # Install
 
 Completed in containers on RaspberryPie, web service behind nginx.
@@ -142,11 +150,6 @@ we get traffic
 
 nothing in graylog...
 
-# TODO
-
-- [ ] Remaining exceptions
-- [x] Configuration streams & Inputs
-- [x] Create Dashboard ~ Pipeline ?
 
 Reference:
 - [:books: Graylog doc](https://go2docs.graylog.org/current/home.htm)
