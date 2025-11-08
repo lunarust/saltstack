@@ -1,4 +1,4 @@
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 ### Zabbix
@@ -11,11 +11,6 @@ zabbix_client_fw:
     - ports:
       - 10050-10051/tcp
 
-zabbix_repo_rh:
-  file.managed:
-    - name: /etc/yum.repos.d/zabbix.repo
-    - source: salt://zabbix_agent/repo/zabbix.repo
-    - template: jinja
 {% else %}
 ## Debian
 ### Zabbix
@@ -23,11 +18,6 @@ ufw allow 10050:10051/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '10050:10051/tcp'"
 
-zabbix_repo_db:
-  file.managed:
-    - name: /etc/apt/sources.list.d/zabbix.list
-    - source: salt://zabbix_agent/repo/zabbix.list
-    - template: jinja    
 {% endif %}
 
 {% if grains['fqdn'] != 'helios.greece.local' %}
@@ -56,4 +46,3 @@ zabbix-agent2:
 usermod -aG docker zabbix:
   cmd.run:
     - unless: "groups zabbix| grep docker"
-

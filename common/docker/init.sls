@@ -1,23 +1,6 @@
 # Docker install
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
-# and grains.osmajorrelease >= 6 %}
-## All RedHat - Rocky - Alma
-docker_repo_rh:
-  file.managed:
-    - name: /etc/yum.repos.d/docker-ce.repo
-    - source: salt://docker/repo/docker.repo
-    - template: jinja
-{% else %}
-## Debian
-docker_repo_db:
-  file.managed:
-    - name: /etc/apt/sources.list.d/docker.list
-    - source: salt://docker/repo/docker.list
-    - template: jinja
-{% endif %}
 
-
-# Docker subnet configuration 
+# Docker subnet configuration
 docker_daemon_conf:
   file.managed:
     - name: /etc/docker/daemon.json

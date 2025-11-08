@@ -17,7 +17,7 @@ fi
 
 node=$1
 cd /srv/saltstack/
-git pull
+#git pull
 
 
 if [ "${2}" == "YES" ]; then

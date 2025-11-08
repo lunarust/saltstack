@@ -72,17 +72,28 @@ motd:
 # and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 
-epel_repo_rh:
-  file.managed:
-    - name: /etc/yum.repos.d/epel.repo
-    - source: salt://os/repo/epel.repo
-    - template: jinja
+/etc/yum.repos.d:
+  file.recurse:
+    - source: salt://os/repo/rpm
+    - include_empty: True
+    - clean: false
+    - file_mode: '644'
+    - create: True
+
 {% else %}
 ## Debian based
+salt_download_public_key:
+  cmd.run:
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+  unless:
+    ls /etc/apt/keyrings/salt-archive-keyring-2023.pgp
 
-#epel_repo_db:
-#  file.managed:
-#    - name: /etc/apt/sources.list.d/epel.list
-#    - source: salt://os/repo/epel.list
-#    - template: jinja
+/etc/apt/sources.list.d:
+  file.recurse:
+    - source: salt://os/repo/apt
+    - include_empty: True
+    - clean: false
+    - file_mode: '644'
+    - create: True
+
 {% endif %}
