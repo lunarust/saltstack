@@ -82,11 +82,11 @@ motd:
 
 {% else %}
 ## Debian based
-salt_download_public_key:
-  cmd.run:
-    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
-  unless:
-    ls /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+#salt_download_public_key:
+#  cmd.run:
+#    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
+#  unless:
+#    ls /etc/apt/keyrings/salt-archive-keyring-2023.pgp
 
 /etc/apt/sources.list.d:
   file.recurse:

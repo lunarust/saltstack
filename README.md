@@ -37,8 +37,15 @@ docker system prune --all --force
 ✔ Container graylog-mongodb-1   Started                                                                                                                                 2.5s
 ✔ Container graylog-graylog-1   Started    
 
+## Salt
+
+- [Install](https://www.tutorialspoint.com/saltstack/saltstack_installation.htm)
+- [Repo change](https://saltproject.io/blog/salt-project-package-repo-migration-and-guidance/)
+
+Configuration and setup:
+
 
 ## Graylog
 
 Install & Configuration:
-[Install](config/graylog/README.md). 
+[Install](config/graylog/README.md).
