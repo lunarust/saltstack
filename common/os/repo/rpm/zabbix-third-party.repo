@@ -1,0 +1,6 @@
+[zabbix-third-party]
+name=Zabbix Official Repository (third-party) - $basearch
+baseurl=https://repo.zabbix.com/third-party/2024-10/rhel/9/$basearch/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-B5333005
+gpgcheck=1

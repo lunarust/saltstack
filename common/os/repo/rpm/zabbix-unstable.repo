@@ -1,0 +1,20 @@
+[zabbix-unstable]
+name=Zabbix Official Repository (unstable) - $basearch
+baseurl=https://repo.zabbix.com/zabbix/7.4/unstable/rhel/9/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-B5333005
+
+[zabbix-unstable-debuginfo]
+name=Zabbix Official Repository (unstable debuginfo) - $basearch
+baseurl=https://repo.zabbix.com/zabbix/7.4/rhel/9/$basearch/debuginfo/
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-B5333005
+gpgcheck=1
+
+[zabbix-unstable-sources]
+name=Zabbix Official Repository (unstable - sources) - $basearch
+baseurl=https://repo.zabbix.com/zabbix/7.4/unstable/rhel/9/SRPMS/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-B5333005

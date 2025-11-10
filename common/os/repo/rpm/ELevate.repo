@@ -1,0 +1,17 @@
+# ELevate project repo for el6/el7/el8/el9/el10
+
+[elevate]
+name=ELevate
+baseurl=https://repo.almalinux.org/elevate/el$releasever/$basearch/
+gpgcheck=1
+enabled=1
+priority=90
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ELevate
+
+## Sources
+[elevate-source]
+name=name=ELevate - Source
+baseurl=https://repo.almalinux.org/elevate/el$releasever/SRPMS/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ELevate

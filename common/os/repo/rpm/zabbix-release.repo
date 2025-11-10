@@ -1,0 +1,6 @@
+[zabbix-release]
+name=Zabbix Official Repository (release packages) - noarch
+baseurl=https://repo.zabbix.com/zabbix/7.4/release/rhel/9/noarch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-B5333005

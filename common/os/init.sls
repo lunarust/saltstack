@@ -76,7 +76,7 @@ motd:
   file.recurse:
     - source: salt://os/repo/rpm
     - include_empty: True
-    - clean: false
+    - clean: true
     - file_mode: '644'
     - create: True
 
