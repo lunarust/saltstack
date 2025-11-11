@@ -1,4 +1,4 @@
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
 ## All RedHat - Rocky - Alma
 ### postgres
@@ -83,12 +83,12 @@ postgresql.service:
 #
 # sudo -u postgres /usr/pgsql-16/bin/initdb -D /data/postgresql/main
 # reload postgres configuration
-sudo -u postgres /usr/pgsql-16/bin/pg_ctl reload -D /data/postgresql/main:
-  cmd.run
+# sudo -u postgres /usr/pgsql-16/bin/pg_ctl reload -D /data/postgresql/main:
+#  cmd.run
 
-# or 
+# or
 # sudo systemctl restart postgresql@13-main.service
-# or 
+# or
 # SELECT pg_reload_conf()
 #
 /usr/lib/systemd/system/postgresql.service:
@@ -96,4 +96,17 @@ sudo -u postgres /usr/pgsql-16/bin/pg_ctl reload -D /data/postgresql/main:
     - source: salt://postgresql/service/postgresql.service
 
 # Service enable & start
-za8s0F423dsa#
+#
+# Plugin to monitor postgres via zabbix
+# https://www.zabbix.com/documentation/current/en/manual/appendix/config/zabbix_agent2_plugins/postgresql_plugin
+#
+
+install_zabbix_agent_plugin_postgres:
+ pkg.installed:
+   - pkgs:
+      - zabbix-agent2-plugin-postgresql
+
+/etc/zabbix/zabbix_agent2.d/plugins.d/postgresql.conf:
+  file.managed:
+    - source: salt://postgresql/zabbix_agent_conf/postgresql.conf
+    - template: jinja
