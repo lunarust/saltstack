@@ -1,5 +1,4 @@
 ##########################################################################
-
                                         _
                                             oOOOOOOOOOOOOOOoo..
                                              """""""""""OOOOOOOOo.
@@ -12,12 +11,12 @@
            OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOoOOOOOOOOOOOOOOO'
           __\OO/"    "OOOOOOOOOOOOOOOOOOOO`OOOOOOOOOOOOO"
             /|\   .oOOooo- `OOOOOOOO""   .O`OOOOOOOOOO'
-  oO--.        .oOOOO"~    .OOOOO'      QQOOO`OOOOOOOOOo
+   oO--.        .oOOOO"~    .OOOOO'      QQOOO`OOOOOOOOOo
   +o--o`----QQOOO"~       .OOOOO'                 `OOOOO
                          .OOOO'                  QQQQO"
                        QQQQO"
-
-
-####################       Welcome little human       ####################
-####################    {{ salt['grains.get']('fqdn') }}       ####################
 ##########################################################################
+> {{ salt['grains.get']('fqdn') }}
+--------------------------------------------------------------------------
+> Welcome little human
+--------------------------------------------------------------------------

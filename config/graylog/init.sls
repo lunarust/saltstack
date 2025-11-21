@@ -18,8 +18,8 @@
 #GRAYLOG_HTTP_EXTERNAL_URI: "http://localhost:9000/"
 
 
-# http://admin:PBUZdEUCkE@192.168.1.207:9000
-# http://admin:PBUZdEUCkE@helios.greece.local:9000
+# http://admin:xxxxxxx@192.168.1.207:9000
+# http://admin:xxxxxxx@helios.greece.local:9000
 
 
 {% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
@@ -43,7 +43,6 @@ graylognginx_fw:
       - 13302/tcp
       - 1514/tcp
       - 12201/udp
-      - 12201/tcp
 
 {% else %}
 # sudo ufw allow {{ salt['pillar.get']('graylog_nginx_port') }}

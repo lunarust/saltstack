@@ -6,3 +6,4 @@ base:
     - nginx.init
     - docker.init
     - salt_minion.init
+    - con.sls
