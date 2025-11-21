@@ -17,7 +17,7 @@ cd /opt/scripts/ && ./flux2post >> /var/log/scripts/flux2post 2>&1:
 
 cd /opt/scripts/ && ./hazevents >> /var/log/scripts/hazevents 2>&1:
   cron.present:
-    - identifier: flux2post
+    - identifier: hazevents
     - user: rust
     - minute: '15'
     - hour: '*/4'
