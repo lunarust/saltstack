@@ -5,7 +5,7 @@ cd /opt/scripts/ && ./wobblealert >> /var/log/scripts/wobblealert 2>&1:
     - identifier: Check_Wobbles
     - user: rust
     - minute: '7'
-    - hour: '*/4'
+    - hour: '*'
 
 cd /opt/scripts/ && ./flux2post >> /var/log/scripts/flux2post 2>&1:
   cron.present:
@@ -14,12 +14,11 @@ cd /opt/scripts/ && ./flux2post >> /var/log/scripts/flux2post 2>&1:
     - minute: '20'
     - hour: '*'
 
-
 cd /opt/scripts/ && ./hazevents >> /var/log/scripts/hazevents 2>&1:
   cron.present:
     - identifier: hazevents
     - user: rust
     - minute: '15'
-    - hour: '*/4'
+    - hour: '*'
 
 {% endif %}
