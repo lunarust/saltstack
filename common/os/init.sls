@@ -97,3 +97,13 @@ motd:
     - create: True
 
 {% endif %}
+
+
+saltstack_scripts:
+  file.recurse:
+    - name: /opt/scripts
+    - source: salt://os/scripts
+    - user: root
+    - group: root
+    - file_mode: '755'
+    - create: True
