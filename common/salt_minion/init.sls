@@ -19,9 +19,9 @@ salt_fw_salt:
 
 ## Debian based
 ### Salt
-ufw allow 4505:4506/tcp:
-  cmd.run:
-    - unless: "ufw status verbose | grep '4505:4506/tcp'"
+#ufw allow 4505:4506/tcp:
+#  cmd.run:
+#    - unless: "ufw status verbose | grep '4505:4506/tcp'"
 
 {% endif %}
 

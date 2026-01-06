@@ -1,5 +1,5 @@
 ## Firewall command
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
 
 ### Zabbix
@@ -26,7 +26,7 @@ ufw allow 4505:4506/tcp:
 
 ### Salt
 
-## Files 
+## Files
 ### Static
 saltstack_conf:
   file.recurse:
