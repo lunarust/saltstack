@@ -19,7 +19,36 @@ cd /opt/scripts/ && ./hazevents >> /var/log/scripts/hazevents 2>&1:
     - identifier: hazevents
     - user: rust
     - minute: '8'
-    - hour: '11'
+    - hour: '*'
+
+cd /opt/scripts/ && ./fetch_videos.sh false 192.168.1.208 >> /var/log/scripts/fetch_videos_sh 2>&1:
+  cron.absent:
+    - identifier: fetch_videos
+    - user: rust
+    - minute: '*/15'
+    - hour: '*'
+
+cd /opt/scripts/ && ./fetch_videos.sh true 192.168.1.208 >> /var/log/scripts/fetch_videos_sh 2>&1:
+  cron.absent:
+    - identifier: fetch_videos_remove
+    - user: rust
+    - minute: '9'
+    - hour: '3'
+cd /opt/scripts/ && ./fetch_videos.sh false 192.168.1.230 >> /var/log/scripts/fetch_videos_sh 2>&1:
+  cron.absent:
+    - identifier: fetch_videos_second
+    - user: rust
+    - minute: '3/15'
+    - hour: '*'
+
+cd /opt/scripts/ && ./fetch_videos.sh true 192.168.1.230 >> /var/log/scripts/fetch_videos_sh 2>&1:
+  cron.absent:
+    - identifier: fetch_videos_remove_second
+    - user: rust
+    - minute: '12'
+    - hour: '3'
+
+
 {% elif grains['fqdn'] == 'aetes.greece.local' %}
 cd /git/saltstack/hosts/aetes/ && ./rsync_allgit.sh >> /var/log/scripts/rsync_allgit_sh 2>&1:
   cron.present:

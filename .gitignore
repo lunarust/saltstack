@@ -3,3 +3,6 @@
 /hosts/bors/files/config/Default.toml
 /config/metabase/docker/*.txt
 /config/graylog/docker/.env
+
+
+hosts/bors/files/scripts/.videopass
