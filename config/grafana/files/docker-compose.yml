@@ -5,9 +5,8 @@ services:
     container_name: grafana
     ports:
       - 3050:3000
-    restart: unless-stopped
+    restart: always
     volumes:
       - /opt/grafana/data:/var/lib/grafana
       - /opt/grafana/grafana.ini:/etc/grafana/grafana.ini
       - /opt/grafana/provisioning:/etc/grafana/provisioning
-

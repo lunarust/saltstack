@@ -35,7 +35,7 @@ Simply replace the service image to mongodb-raspberrypi4-unofficial-r7.0.4:lates
 ## Graylog start
 
 Once Graylog starts the first time it will provide you with credentials to create and dispatch a certificate.
-Folllow the steps and restart Graylog, you can now use the password saved in your env file.
+Follow the steps and restart Graylog, you can now use the password saved in your env file.
 
 
 # Centralize log from Linux system to Graylog
@@ -133,9 +133,7 @@ rust : 1 incorrect password attempt ; TTY=pts/1 ; PWD=/root ; USER=root ; COMMAN
 - Containers Events
 
 
-
 # Business application
-
 See to push GELF logs from any / either app
 
 ## Test one app
