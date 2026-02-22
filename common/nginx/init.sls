@@ -13,10 +13,10 @@ nginx:
 # Add docker group to nginx user
 usermod -aG zabbix nginx:
   cmd.run:
-    - unless: "groups zabbix| grep nginx"    
-    
+    - unless: "groups zabbix| grep nginx"
+
 # Zabbix nginx ping configuration
-zabbix_nginx_configuration:
+zabbix_nginx_configuration_dupplicate:
   file.managed:
     - name: /etc/nginx/conf.d/zabbix_ping.conf
     - source: salt://nginx/files/zabbix_ping.conf

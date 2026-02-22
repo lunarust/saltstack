@@ -1,0 +1,6 @@
+FROM jenkins/ssh-agent:jdk21
+RUN apt-get update && apt-get install -y curl build-essential pkg-config
+# RUN RUSTUP_HOME=/opt/rust && export RUSTUP_HOME & CARGO_HOME=/opt/rust && export CARGO_HOME && curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+COPY agent.jar start_agent.sh .token /home/jenkins/
+ENTRYPOINT ["start_agent.sh"]

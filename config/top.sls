@@ -2,10 +2,6 @@ salt:
   'bors.greece.local':
      - salt.init
 
-tududi:
-  'bors.greece.local':
-    - tududi.init
-
 graylog:
   'helios.greece.local':
     - graylog.init

@@ -1,8 +1,11 @@
 /pillars/secret.sls
-/config/jenkins/docker/.env
-/hosts/bors/files/config/Default.toml
 /config/metabase/docker/*.txt
-/config/graylog/docker/.env
-
+/hosts/bors/files/config/Default.toml
+**/.env
+**/.token
+**/backup*
 
 hosts/bors/files/scripts/.videopass
+
+#/config/graylog/docker/.env
+#/config/jenkins/docker/.env
