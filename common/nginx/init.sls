@@ -16,7 +16,7 @@ usermod -aG zabbix nginx:
     - unless: "groups zabbix| grep nginx"
 
 # Zabbix nginx ping configuration
-zabbix_nginx_configuration_dupplicate:
+zabbix_nginx_ping_configuration:
   file.managed:
     - name: /etc/nginx/conf.d/zabbix_ping.conf
     - source: salt://nginx/files/zabbix_ping.conf

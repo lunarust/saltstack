@@ -31,3 +31,4 @@ tududi:
 graylog:
   'helios.greece.local':
     - graylog
+    

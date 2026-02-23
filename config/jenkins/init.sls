@@ -1,7 +1,6 @@
 ## Firewall command
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
-
 ### jenkins
 jenkins_server_fw:
   firewalld.present:
@@ -11,9 +10,7 @@ jenkins_server_fw:
     - masquerade: False
     - ports:
       - 8090/tcp
-
 {% else %}
-
 # sudo ufw allow 8090
 ufw allow 8090/tcp:
   cmd.run:
@@ -35,10 +32,20 @@ jenkins_docker:
     - source: salt://jenkins/docker
     - user: rust
     - group: root
-    - template: jinja
     - create: True
     - include_empty: True
 
+# jenkins container files & volumes
+/opt/jenkins/scripts:
+  file.recurse:
+    - source: salt://jenkins/scripts
+    - user: rust
+    - group: root
+    - file_mode: '755'
+    - create: True
+    - include_empty: True
+
+### Nginx ###
 # jenkins nginx configuration file with upstream to container
 jenkins_nginx_configuration:
   file.managed:
@@ -48,11 +55,27 @@ jenkins_nginx_configuration:
     - create: True
 
 # reload nginx
-nginx -s reload:
-  cmd.run
+#jenkins_nginx_reload:
+#  cmd.run:
+#    - names:
+#      - nginx -s reload:
 
 nginx_selinux_8090:
   cmd.run:
     - names:
       - semanage permissive -a httpd_t
-      - semanage port -a -t http_port_t  -p tcp 8090  
+      - semanage port -a -t http_port_t  -p tcp 8090
+
+### Jenkins services ###
+/etc/systemd/system/jenkins.service:
+   file.managed:
+      - source: salt://jenkins/service/jenkins.service
+      - user: root
+      - group: root
+      - mode: '771'
+      - create: True
+
+jenkins_service_commands:
+  cmd.run:
+    - names:
+      - systemctl enable jenkins.service

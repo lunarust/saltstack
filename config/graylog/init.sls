@@ -60,6 +60,18 @@ ufw allow {{ salt['pillar.get']('graylog_nginx_port') }},5044,5140,5555,12201,13
     - mode: 744
     - makedirs: True
 
+
+# graylog container files & volumes
+/opt/graylog/scripts:
+  file.recurse:
+    - source: salt://graylog/scripts
+    - user: rust
+    - group: root
+    - file_mode: '755'
+    - create: True
+    - include_empty: True
+
+
 /opt/graylog/mongodb_data:
   file.directory:
     - user: systemd-coredump
@@ -112,9 +124,25 @@ graylog_nginx_configuration:
     - create: True
 
 # reload nginx
-nginx -s reload:
-  cmd.run
+#graylog_nginx_reload:
+#  cmd.run:
+#    - names:
+#      - nginx -s reload:
 
 docker network create graylog_nw:
   cmd.run:
   - unless: docker network inspect graylog_nw
+
+### graylog services ###
+/etc/systemd/system/graylog.service:
+   file.managed:
+      - source: salt://graylog/service/graylog.service
+      - user: root
+      - group: root
+      - mode: '771'
+      - create: True
+
+graylog_service_commands:
+  cmd.run:
+    - names:
+      - systemctl enable graylog.service

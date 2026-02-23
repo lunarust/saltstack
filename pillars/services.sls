@@ -5,4 +5,3 @@ service_scripts:
   - metabase
   - dockreg
   - jenkins
-  

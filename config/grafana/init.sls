@@ -1,5 +1,5 @@
 ## Firewall command
-{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %} 
+{% if grains.os_family == 'RedHat' or grains.os_family == 'Suse' %}
 # and grains.osmajorrelease >= 6 %}
 
 ### Grafana
@@ -46,14 +46,14 @@ ufw allow 3000/tcp:
 grafana_docker:
   file.managed:
     - name: /opt/grafana/docker-compose.yml
-    - source: salt://grafana/files/docker-compose.yml
+    - source: salt://grafana/docker/docker-compose.yml
     - template: jinja
     - create: True
 
 grafana_configuration:
   file.managed:
     - name: /opt/grafana/grafana.ini
-    - source: salt://grafana/files/grafana.ini
+    - source: salt://grafana/docker/grafana.ini
     - template: jinja
     - create: True
 
@@ -69,8 +69,8 @@ grafana_nginx_configuration:
 # check version: https://github.com/grafana/grafana-zabbix/releases
 zabbix_grafana_plugin_wget:
   cmd.run:
-    - names: 
-      - wget -O /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip https://github.com/grafana/grafana-zabbix/releases/download/v4.4.5/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip 
+    - names:
+      - wget -O /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip https://github.com/grafana/grafana-zabbix/releases/download/v4.4.5/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip
     - creates: /opt/grafana/data/plugins/alexanderzobnin-zabbix-app-4.4.5.linux_arm64.zip
 
 zabbix_grafana_plugin_unzip:
@@ -81,7 +81,32 @@ zabbix_grafana_plugin_unzip:
 
 
 
-
 # reload nginx
-nginx -s reload:
-  cmd.run
+# grafana_nginx_reload:
+#  cmd.run:
+#    - names:
+#      - nginx -s reload:
+
+# grafana container files & volumes
+/opt/grafana/scripts:
+  file.recurse:
+    - source: salt://grafana/scripts
+    - user: rust
+    - group: root
+    - file_mode: '755'
+    - create: True
+    - include_empty: True
+
+### grafana services ###
+/etc/systemd/system/grafana.service:
+   file.managed:
+      - source: salt://grafana/service/grafana.service
+      - user: root
+      - group: root
+      - mode: '771'
+      - create: True
+
+grafana_service_commands:
+  cmd.run:
+    - names:
+      - systemctl enable grafana.service
