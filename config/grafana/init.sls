@@ -31,9 +31,9 @@ ufw allow 3000/tcp:
 
 /opt/grafana/data:
   file.directory:
-    - user: rust
+    - user: root
     - group: docker
-    - mode: 744
+    - mode: 755
     - makedirs: True
 
 /opt/grafana/provisioning:

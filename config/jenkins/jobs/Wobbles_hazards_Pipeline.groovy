@@ -5,30 +5,33 @@ node() {
   milestone 1
   stage('Build'){
     def FETCH = sh (
-        script: "cd ../Build && git fetch --depth=1 origin main && git diff --name-only origin/main main | cut -d'/' -f1 | sort -u",
+        script: "cd /var/jenkins_home/Wobbles_hazards/Checkout && git fetch --depth=1 origin main && git diff --name-only origin/main main | cut -d'/' -f1 | sort -u",
         returnStdout: true
     )
+    build job: 'Wobbles_hazards/Checkout'
     def LSSP = FETCH.split('\n')
-
+    println "Fetch command resulted with: $LSSP"
     for (prj in LSSP) {
+      if (prj != "") {
         LSSPROP << "$prj"
-
         println "#### Engaging build for $prj"
-        build job: 'Wobbles_hazards/Build', parameters: [string(name: 'SubProject', value: prj)]
-    }
+        build job: 'Wobbles_hazards/Build', parameters: [string(name: 'app', value: prj)]
+    }}
   }
   milestone 2
   stage('Release'){
     for (prj in LSSPROP) {
-        def filename = prj
-        println "Engaging release for $prj"
+      def filename = prj
+      println "Engaging release for $prj"
+      if (prj != "") {
         if (prj == "push_phone") {
            build job: 'Wobbles_hazards/ReleaseLibrary'
         }
         else {
-          build job: 'Wobbles_hazards/Release', parameters: [string(name: 'Project', value: prj)]
+          build job: 'Wobbles_hazards/Release', parameters: [string(name: 'app', value: prj)]
         }
-
+      }
+      else { println "### Nothing to do here" }
     }
   }
   milestone 3
