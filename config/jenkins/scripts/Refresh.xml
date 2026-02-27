@@ -38,7 +38,7 @@ MYSALTENVTOREPLACE
 <arguments>"saltenv={{service}}"</arguments>
 </clientInterface>
 <saveEnvVar>false</saveEnvVar>
-<credentialsId>c3ae66a2-70c4-4c51-ac95-6f0b995228f9</credentialsId>
+<credentialsId>SALTUSERID</credentialsId>
 <saveFile>false</saveFile>
 <skipValidation>true</skipValidation>
 </com.waytta.SaltAPIBuilder>

@@ -5,7 +5,8 @@
 #      COMMENT: The scripts will loop in your salt repository and collect all saltenv
 #               Once the list is fetched it will submit them to Jenkins
 #               One job per Grain with the list of saltenv available for the grain in param
-#               Create a .env file with the following variables [JENKINS_URL=http://host.plop.local:8080 JENKINS_USER=xxx JENKINS_TOKEN=xxx]
+#               Create a .env file with the following variables
+#               [JENKINS_URL=http://host.plop.local:8080 JENKINS_USER=xxx JENKINS_TOKEN=xxx SALTUSERID=XXXXX]
 #===============================================================================
 
 # /srv/saltstack
@@ -91,7 +92,7 @@ do
     host="*"
   fi
 
-  buildJob=$(sed "s/MYHOSTTOREPLACE/${host}/;s|MYSALTENVTOREPLACE|${myxml}|" ./Refresh.xml)
+  buildJob=$(sed "s/MYHOSTTOREPLACE/${host}/;s|MYSALTENVTOREPLACE|${myxml}|;s/SALTUSERID/${SALTUSERID}/" ./Refresh.xml)
 
   job_name="Refresh_${i%.*.*}"
   echo ${buildJob} > "${job_name}.xml"
