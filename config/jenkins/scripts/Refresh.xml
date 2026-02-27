@@ -9,7 +9,9 @@
 <hudson.model.ChoiceParameterDefinition>
 <name>service</name>
 <choices class="java.util.Arrays$ArrayList">
-<a class="string-array">MYSALTENVTOREPLACE</a>
+<a class="string-array">
+MYSALTENVTOREPLACE
+</a>
 </choices>
 </hudson.model.ChoiceParameterDefinition>
 </parameterDefinitions>
@@ -29,16 +31,16 @@
 <clientInterface class="com.waytta.clientinterface.LocalClient">
 <jobPollTime>10</jobPollTime>
 <minionTimeout>30</minionTimeout>
-<blockbuild>false</blockbuild>
+<blockbuild>true</blockbuild>
 <target>MYHOSTTOREPLACE</target>
 <targettype>glob</targettype>
 <function>state.highstate</function>
-<arguments>{{service}}</arguments>
+<arguments>"saltenv={{service}}"</arguments>
 </clientInterface>
 <saveEnvVar>false</saveEnvVar>
 <credentialsId>c3ae66a2-70c4-4c51-ac95-6f0b995228f9</credentialsId>
 <saveFile>false</saveFile>
-<skipValidation>false</skipValidation>
+<skipValidation>true</skipValidation>
 </com.waytta.SaltAPIBuilder>
 </builders>
 <publishers/>
