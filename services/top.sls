@@ -4,6 +4,9 @@ tududi:
 myspeed:
   'bors.greece.local':
     - myspeed.init
+navidrome:
+  'bors.greece.local':
+    - navidrome.init    
 homepage:
   'helios.greece.local':
     - homepage.init

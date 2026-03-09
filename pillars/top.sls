@@ -41,3 +41,7 @@ graylog:
 myspeed:
   'bors.greece.local':
     - secret
+navidrome:
+  'bors.greece.local':
+    - common
+    - secret

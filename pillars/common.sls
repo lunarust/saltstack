@@ -11,7 +11,15 @@ tududi_nginx_port: 3102
 
 zabbix_ping_port: 9050
 
-homepage_nginx_port: 3005
-homepage_container_port: 3000
+homepage_container_port: 3015
+homepage_nginx_port: 3035
 
 pihole_80: 88
+
+navidrome_container_port: 4533
+
+
+myspeed_container_port: 5216
+
+grafana_container_port: 3050
+grafana_nginx_port: 3000

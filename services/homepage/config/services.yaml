@@ -59,7 +59,18 @@
         href: http://bors.greece.local:8086/
         icon: influxdb.png
         description: Influx
-
+    - Navidrome:
+        href: http://bors.greece.local:4533/
+        icon: navidrome.png
+        description: Music maestro
+        server: bors
+        container: navidrome        
+        widget:
+          type: navidrome
+          url: http://192.168.1.217:4533
+          user: rust
+          token: {{ salt['pillar.get']('navidrome_token') }}
+          salt: jackandjill
 
 - General:
   - Router:

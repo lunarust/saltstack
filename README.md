@@ -26,3 +26,8 @@ Install & Configuration:
 ## HomePage
 [On Github](https://github.com/gethomepage/homepage)
 [Web](https://gethomepage.dev/)
+
+
+password=xxxx
+salt=saltySalt
+echo -n "$password$salt" |md5sum

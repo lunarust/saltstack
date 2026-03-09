@@ -1,0 +1,14 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    #user: 1001:1001 # should be owner of volumes
+    ports:
+      - "{{ salt['pillar.get']('navidrome_container_port') }}:4533"
+    restart: unless-stopped
+    # environment:
+      # Optional: put your config options customization here. Examples:
+      # ND_LOGLEVEL: debug
+    volumes:
+      - "/opt/navidrome/data:/data"
+      - "/opt/navidrome/music:/music:ro"
