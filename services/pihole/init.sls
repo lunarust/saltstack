@@ -53,3 +53,9 @@ pihole_docker:
     - group: root
     - mode: 744
     - makedirs: True
+
+pihile_conf:
+  file.recurse:
+    - name: /opt/pihole/etc-pihole/
+    - source: salt://pihole/config
+    - create: True

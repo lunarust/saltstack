@@ -7,5 +7,5 @@
 
 hosts/bors/files/scripts/.videopass
 
-#/config/graylog/docker/.env
-#/config/jenkins/docker/.env
+**/key.pem
+**/greece.local.pem

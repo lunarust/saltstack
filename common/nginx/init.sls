@@ -22,3 +22,9 @@ zabbix_nginx_ping_configuration:
     - source: salt://nginx/files/zabbix_ping.conf
     - template: jinja
     - create: True
+
+nginx_ssl:
+  file.recurse:
+    - name: /etc/nginx/ssl
+    - source: salt://states/certs
+    - create: True
