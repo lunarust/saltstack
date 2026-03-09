@@ -28,7 +28,12 @@ tududi:
     - tududi
     - secret
 
+homepage:
+  'helios.greece.local':
+    - common
+pihole:
+  'bors.greece.local':
+    - common    
 graylog:
   'helios.greece.local':
     - graylog
-    

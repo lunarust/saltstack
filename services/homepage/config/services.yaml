@@ -1,0 +1,27 @@
+- Bors:
+    - Tududi:
+        href: http://bors.greece.local:3102/
+        icon: tududi.png
+        description: todo stuff
+    - InfluxDB:
+        href: http://bors.greece.local:8086/
+        icon: influxdb.png
+        description: Influx
+
+- Helios:
+    - Graylog:
+        href: http://helios.greece.local/
+        icon: graylog.png
+        description: Centralized log management
+    - Grafana:
+        href: http://helios.greece.local:3000/
+        icon: grafana.png
+        description: Grafs & Stuff
+    - Jenkins:
+        href: http://helios.greece.local:8090/
+        icon: jenkins.png
+        description: My Valet
+    - Zabbix:
+        href: http://helios.greece.local:8080/
+        icon: zabbix.png
+        description: Monitoring

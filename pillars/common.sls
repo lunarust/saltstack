@@ -10,3 +10,8 @@ graylog_nginx_port: 9100
 tududi_nginx_port: 3102
 
 zabbix_ping_port: 9050
+
+homepage_nginx_port: 3005
+homepage_container_port: 3000
+
+pihole_80: 88
