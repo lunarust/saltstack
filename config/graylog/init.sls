@@ -32,6 +32,7 @@ graylognginx_fw:
     - prune_services: False
     - ports:
       - {{ salt['pillar.get']('graylog_nginx_port') }}/tcp
+      - {{ salt['pillar.get']('graylog_nginx_ssl_port') }}/tcp
       - 5044/tcp
       - 9000/tcp
       - 5140/tcp
@@ -46,7 +47,7 @@ graylognginx_fw:
 
 {% else %}
 # sudo ufw allow {{ salt['pillar.get']('graylog_nginx_port') }}
-ufw allow {{ salt['pillar.get']('graylog_nginx_port') }},5044,5140,5555,12201,13301,13302,9000,1514,5140,12201/tcp:
+ufw allow {{ salt['pillar.get']('graylog_nginx_port') }},5044,5140,5555,12201,13301,13302,9000,1514,5140,12201,4443/tcp:
 
   cmd.run:
     - unless: "ufw status verbose | grep '{{ salt['pillar.get']('graylog_nginx_port') }}/tcp'"

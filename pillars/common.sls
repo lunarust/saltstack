@@ -6,6 +6,7 @@ gelf_logback_port: 12201
 
 # All Nginx Ports
 graylog_nginx_port: 9100
+graylog_nginx_ssl_port: 4443
 
 tududi_nginx_port: 3102
 

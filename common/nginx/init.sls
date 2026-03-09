@@ -26,5 +26,5 @@ zabbix_nginx_ping_configuration:
 nginx_ssl:
   file.recurse:
     - name: /etc/nginx/ssl
-    - source: salt://states/certs
+    - source: salt://nginx/certs
     - create: True
