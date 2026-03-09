@@ -20,7 +20,7 @@
           version: 6
           key: {{ salt['pillar.get']('pihole_pass') }}
     - Graylog:
-        href: http://helios.greece.local/
+        href: https://graylog.greece.local:4443
         icon: graylog.png
         description: Centralized log management
         server: helios
@@ -64,7 +64,7 @@
         icon: navidrome.png
         description: Music maestro
         server: bors
-        container: navidrome        
+        container: navidrome
         widget:
           type: navidrome
           url: http://192.168.1.217:4533
