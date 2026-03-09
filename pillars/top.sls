@@ -32,8 +32,12 @@ homepage:
   'helios.greece.local':
     - common
 pihole:
-  'bors.greece.local':
-    - common    
+  'helios.greece.local':
+    - common
+    - secret
 graylog:
   'helios.greece.local':
     - graylog
+myspeed:
+  'bors.greece.local':
+    - secret

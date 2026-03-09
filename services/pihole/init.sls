@@ -12,6 +12,7 @@ jenkins_server_fw:
       - 53/tcp
       - 53/udp
       - 443/tcp
+      - 123/udp
       - {{ salt['pillar.get']('pihole_80') }}/tcp
 
 
@@ -23,6 +24,9 @@ ufw allow 53/tcp:
 ufw allow 53/udp:
   cmd.run:
     - unless: "ufw status verbose | grep '53/udp'"
+ufw allow 123/udp:
+  cmd.run:
+    - unless: "ufw status verbose | grep '123/udp'"
 ufw allow 443/tcp:
   cmd.run:
     - unless: "ufw status verbose | grep '443/tcp'"
@@ -40,6 +44,7 @@ pihole_docker:
     - group: root
     - create: True
     - include_empty: True
+    - template: jinja
 
 # pi-hole container files & volumes
 /opt/pihole/etc-pihole/:

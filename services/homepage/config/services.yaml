@@ -1,27 +1,68 @@
+- Helios:
+    - Zabbix:
+        href: http://helios.greece.local:8080/
+        icon: zabbix.png
+        description: Monitoring
+        widget:
+          type: zabbix
+          url: http://192.168.1.207:8080
+          key: {{ salt['pillar.get']('zabbix_monitoring_api') }}
+    - Pi-Hole:
+        href: http://helios.greece.local:88/admin/
+        siteMonitor: http://192.168.1.207:88
+        icon: pi-hole.png
+        description: Network-wide ad blocking & DNS
+        server: helios
+        container: pihole
+        widget:
+          type: pihole
+          url: http://192.168.1.207:88
+          version: 6
+          key: {{ salt['pillar.get']('pihole_pass') }}
+    - Graylog:
+        href: http://helios.greece.local/
+        icon: graylog.png
+        description: Centralized log management
+        server: helios
+        container: graylog-graylog-1
+    - Grafana:
+        href: http://helios.greece.local:3000/
+        icon: grafana.png
+        description: Grafs & Stuff
+        server: helios # The docker server that was configured
+        container: grafana
+    - Jenkins:
+        href: http://helios.greece.local:8090/
+        icon: jenkins.png
+        description: My Valet
+        server: helios # The docker server that was configured
+        container: jenkins-sandbox
+
 - Bors:
     - Tududi:
         href: http://bors.greece.local:3102/
         icon: tududi.png
         description: todo stuff
+        server: bors
+        container: tududi
+    - MySpeed:
+        href: http://bors.greece.local:5216/
+        icon: myspeed.png
+        description: MySpeed
+        server: bors
+        container: myspeed
+        widget:
+          type: myspeed
+          url: http://192.168.1.217:5216
+          password: {{ salt['pillar.get']('myspeed_pass') }}
     - InfluxDB:
         href: http://bors.greece.local:8086/
         icon: influxdb.png
         description: Influx
 
-- Helios:
-    - Graylog:
-        href: http://helios.greece.local/
-        icon: graylog.png
-        description: Centralized log management
-    - Grafana:
-        href: http://helios.greece.local:3000/
-        icon: grafana.png
-        description: Grafs & Stuff
-    - Jenkins:
-        href: http://helios.greece.local:8090/
-        icon: jenkins.png
-        description: My Valet
-    - Zabbix:
-        href: http://helios.greece.local:8080/
-        icon: zabbix.png
-        description: Monitoring
+
+- General:
+  - Router:
+      href: https://192.168.1.1/login.html
+      icon: awwesome.png
+      description: Router

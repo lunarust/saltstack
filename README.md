@@ -21,3 +21,8 @@ Configuration and setup:
 
 Install & Configuration:
 [Install](config/graylog/README.md).
+
+
+## HomePage
+[On Github](https://github.com/gethomepage/homepage)
+[Web](https://gethomepage.dev/)

@@ -1,0 +1,14 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+
+- openmeteo:
+    label: Current
+    latitude: 37.57
+    longitude: 22.80
+    cache: 5
+    units: metric

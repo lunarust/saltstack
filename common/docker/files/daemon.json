@@ -1,6 +1,10 @@
 {
   "bip": "172.21.0.1/24",
   "default-address-pools": [
-    { "base": "172.21.0.0/18", "size": 24 }
-  ]
+  {
+    "base": "172.21.0.0/18",
+    "size": 24
+  }
+],
+  "hosts": ["fd://","unix:///var/run/docker.sock","tcp://0.0.0.0:2375"]
 }
