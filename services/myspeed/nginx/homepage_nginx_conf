@@ -4,7 +4,7 @@ upstream myspeed {
 
 server {
 
-        listen       5216;
+        listen       {{ salt['pillar.get']('myspeed_nginx_port') }};
         server_name  {{ salt['grains.get']('fqdn_ip4')[0] }} {{ salt['grains.get']('fqdn') }} localhost;
         charset      utf-8;
 

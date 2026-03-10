@@ -21,6 +21,7 @@ navidrome_container_port: 4533
 
 
 myspeed_container_port: 5216
+myspeed_nginx_port: 5217
 
 grafana_container_port: 3050
 grafana_nginx_port: 3000

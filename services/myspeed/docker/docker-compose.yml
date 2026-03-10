@@ -3,7 +3,7 @@ services:
     image: germannewsmaker/myspeed
     container_name: myspeed
     ports:
-      - 5216:5216
+      - {{ salt['pillar.get']('myspeed_container_port') }}:5216
     volumes:
       - /opt/myspeed/data:/myspeed/data
     restart: unless-stopped

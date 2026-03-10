@@ -7,13 +7,13 @@ myspeednginx_fw:
     - masquerade: False
     - prune_services: False
     - ports:
-      - 5216/tcp
+      - {{ salt['pillar.get']('myspeed_nginx_port') }}/tcp
 
 {% else %}
 # sudo ufw allow {{ salt['pillar.get']('myspeed_nginx_port') }}
-ufw allow 5216/tcp:
+ufw allow {{ salt['pillar.get']('myspeed_nginx_port') }}/tcp:
   cmd.run:
-    - unless: "ufw status verbose | grep '5216/tcp'"
+    - unless: "ufw status verbose | grep '{{ salt['pillar.get']('myspeed_nginx_port') }}/tcp'"
 
 
 {% endif %}
