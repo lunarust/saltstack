@@ -1,0 +1,13 @@
+services:
+  sandbox_mysql:
+    image: mysql:latest
+    container_name: sandbox_mysql
+    ports:
+      - 3306:3306
+    restart: always
+    #networks:
+    #  - reporting_mgmt_nw
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - "/opt/mysql/sandbox_data/:/var/lib/mysql"

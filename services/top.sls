@@ -6,10 +6,13 @@ myspeed:
     - myspeed.init
 navidrome:
   'bors.greece.local':
-    - navidrome.init    
+    - navidrome.init
 homepage:
   'helios.greece.local':
     - homepage.init
 pihole:
   'helios.greece.local':
     - pihole.init
+booklore:
+  'bors.greece.local':
+    - booklore.init

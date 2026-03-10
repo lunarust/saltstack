@@ -45,6 +45,17 @@
         description: todo stuff
         server: bors
         container: tududi
+    - Booklore:
+        href: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/
+        icon: booklore.png
+        description: Books
+        server: bors
+        container: booklore
+        widget:
+          type: booklore
+          url: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/
+          username: {{ salt['pillar.get']('booklore_user') }}
+          password: {{ salt['pillar.get']('booklore_password') }}
     - MySpeed:
         href: http://bors.greece.local:5216/
         icon: myspeed.png

@@ -45,3 +45,6 @@ navidrome:
   'bors.greece.local':
     - common
     - secret
+booklore:
+  'bors.greece.local':
+    - common

@@ -24,3 +24,6 @@ myspeed_container_port: 5216
 
 grafana_container_port: 3050
 grafana_nginx_port: 3000
+
+booklore_nginx_port: 6061
+booklore_container_port: 6060
