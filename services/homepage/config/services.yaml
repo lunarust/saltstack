@@ -1,12 +1,4 @@
-- Helios:
-    - Zabbix:
-        href: http://helios.greece.local:8080/
-        icon: zabbix.png
-        description: Monitoring
-        widget:
-          type: zabbix
-          url: http://192.168.1.207:8080
-          key: {{ salt['pillar.get']('zabbix_monitoring_api') }}
+- Network & Monitoring:
     - Pi-Hole:
         href: http://helios.greece.local:88/admin/
         siteMonitor: http://192.168.1.207:88
@@ -19,6 +11,30 @@
           url: http://192.168.1.207:88
           version: 6
           key: {{ salt['pillar.get']('pihole_pass') }}
+    - MySpeed:
+        href: http://bors.greece.local:{{ salt['pillar.get']('myspeed_nginx_port') }}/
+        icon: myspeed.png
+        description: MySpeed
+        server: bors
+        container: myspeed
+        widget:
+          type: myspeed
+          url: http://192.168.1.217:{{ salt['pillar.get']('myspeed_nginx_port') }}
+          password: {{ salt['pillar.get']('myspeed_pass') }}
+    - Zabbix:
+        href: http://helios.greece.local:8080/
+        icon: zabbix.png
+        description: Monitoring
+        widget:
+          type: zabbix
+          url: http://192.168.1.207:8080
+          key: {{ salt['pillar.get']('zabbix_monitoring_api') }}
+    - Router:
+        href: https://192.168.1.1/login.html
+        icon: awwesome.png
+        description: Router
+
+- Tools:
     - Graylog:
         href: https://graylog.greece.local:4443
         icon: graylog.png
@@ -37,14 +53,12 @@
         description: My Valet
         server: helios # The docker server that was configured
         container: jenkins-sandbox
+    - InfluxDB:
+        href: http://bors.greece.local:8086/
+        icon: influxdb.png
+        description: Influx
 
-- Bors:
-    - Tududi:
-        href: http://bors.greece.local:3102/
-        icon: tududi.png
-        description: todo stuff
-        server: bors
-        container: tududi
+- Stuff:
     - Booklore:
         href: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/
         icon: booklore.png
@@ -56,20 +70,6 @@
           url: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/
           username: {{ salt['pillar.get']('booklore_user') }}
           password: {{ salt['pillar.get']('booklore_password') }}
-    - MySpeed:
-        href: http://bors.greece.local:5216/
-        icon: myspeed.png
-        description: MySpeed
-        server: bors
-        container: myspeed
-        widget:
-          type: myspeed
-          url: http://192.168.1.217:5216
-          password: {{ salt['pillar.get']('myspeed_pass') }}
-    - InfluxDB:
-        href: http://bors.greece.local:8086/
-        icon: influxdb.png
-        description: Influx
     - Navidrome:
         href: http://bors.greece.local:4533/
         icon: navidrome.png
@@ -82,9 +82,9 @@
           user: rust
           token: {{ salt['pillar.get']('navidrome_token') }}
           salt: jackandjill
-
-- General:
-  - Router:
-      href: https://192.168.1.1/login.html
-      icon: awwesome.png
-      description: Router
+    - Tududi:
+        href: http://bors.greece.local:3102/
+        icon: tududi.png
+        description: todo stuff
+        server: bors
+        container: tududi

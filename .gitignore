@@ -4,6 +4,7 @@
 **/.env
 **/.token
 **/backup*
+**/.*
 
 hosts/bors/files/scripts/.videopass
 

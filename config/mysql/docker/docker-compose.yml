@@ -4,7 +4,7 @@ services:
     container_name: sandbox_mysql
     ports:
       - 3306:3306
-    restart: always
+    restart: never
     #networks:
     #  - reporting_mgmt_nw
     environment:

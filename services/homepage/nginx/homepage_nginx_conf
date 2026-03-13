@@ -5,7 +5,7 @@ upstream homepage {
 server {
 
         listen       {{ salt['pillar.get']('homepage_nginx_port') }};
-        server_name  {{ salt['grains.get']('fqdn_ip4')[0] }} {{ salt['grains.get']('fqdn') }} localhost;
+        server_name  {{ salt['grains.get']('fqdn_ip4')[0] }} {{ salt['grains.get']('fqdn') }} home.greece.local helios localhost;
         charset      utf-8;
 
         access_log                /var/log/nginx/nginx_homepage.access.log;

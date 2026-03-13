@@ -8,6 +8,6 @@ providers:
 
 
 layout:
-  Helios:
+  Network & Monitoring:
     style: row
     columns: 4
