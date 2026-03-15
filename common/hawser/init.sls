@@ -51,3 +51,4 @@ hawser_service_commands:
 # curl http://localhost:2376/_hawser/health
 # sudo chmod 666 /var/run/docker.sock
 # curl http://localhost:2376/_hawser/health
+# TLS_SKIP_VERIFY=true hawser --server wss://your-dockhand.example.com/api/hawser/connect --token your-token
