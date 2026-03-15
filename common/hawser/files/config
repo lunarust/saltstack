@@ -1,0 +1,26 @@
+# Hawser Configuration
+# See https://github.com/Finsys/hawser for documentation
+PORT=2376
+DOCKER_SOCKET=/var/run/docker.sock
+
+
+# Edge Mode - connect to Dockhand server
+TOKEN=bCPEyWLLXqNZ7WF_fD-RxN0y_1NYyDu8BeGVKpiwWTo
+DOCKHAND_SERVER_URL=wss://bors.greece.local:3060/api/hawser/connect
+TOKEN=bCPEyWLLXqNZ7WF_fD-xxxxxxxxxxx
+
+# Docker socket path
+DOCKER_SOCKET=/var/run/docker.sock
+
+# Agent identification (optional)
+AGENT_NAME={{ salt['grains.get']('fqdn') }}
+
+# TLS configuration for self-signed Dockhand (optional)
+# CA_CERT=/etc/hawser/dockhand-ca.crt
+# TLS_SKIP_VERIFY=false
+
+# Connection settings (optional)
+# HEARTBEAT_INTERVAL=30
+# RECONNECT_DELAY=1
+# MAX_RECONNECT_DELAY=60
+# WELCOME_TIMEOUT=30

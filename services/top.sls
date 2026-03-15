@@ -16,3 +16,9 @@ pihole:
 booklore:
   'bors.greece.local':
     - booklore.init
+netalertx:
+  'helios.greece.local':
+    - netAlertX.init
+dockhand:
+  'bors.greece.local':
+    - dockhand.init

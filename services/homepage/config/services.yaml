@@ -29,6 +29,17 @@
           type: zabbix
           url: http://192.168.1.207:8080
           key: {{ salt['pillar.get']('zabbix_monitoring_api') }}
+    - NetAlertX:
+        href: http://helios.greece.local:20211/
+        icon: netalertx.png
+        description: NetAlertX
+        server: helios
+        container: netalertx
+        widget:
+          type: netalertx
+          url: http://192.168.1.207:20212 # use backend port for widget version 2+
+          key: {{ salt['pillar.get']('netalertx_monitoring_api') }}
+          version: 2 # optional, default is 1
     - Router:
         href: https://192.168.1.1/login.html
         icon: awwesome.png
@@ -53,6 +64,18 @@
         description: My Valet
         server: helios # The docker server that was configured
         container: jenkins-sandbox
+    - DockHand:
+        href: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}/
+        icon: dockhand.png
+        description: DockHand
+        server: bors # The docker server that was configured
+        container: dockhand
+        widget:
+          type: dockhand
+          url: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}/api
+          environment: local # optional: name or id; aggregates all when omitted
+          username: {{ salt['pillar.get']('dockhand_user') }}
+          password: {{ salt['pillar.get']('dockhand_password') }}
     - InfluxDB:
         href: http://bors.greece.local:8086/
         icon: influxdb.png

@@ -6,4 +6,5 @@ base:
     - nginx.init
     - docker.init
     - salt_minion.init
+#    - hawser.init
 #    - os.packages

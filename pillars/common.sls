@@ -28,3 +28,5 @@ grafana_nginx_port: 3000
 
 booklore_nginx_port: 6061
 booklore_container_port: 6060
+
+dockhand_nginx_port: 3060

@@ -10,4 +10,4 @@ providers:
 layout:
   Network & Monitoring:
     style: row
-    columns: 4
+    columns: 5

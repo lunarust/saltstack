@@ -48,3 +48,6 @@ navidrome:
 booklore:
   'bors.greece.local':
     - common
+dockhand:
+  'bors.greece.local':
+    - common

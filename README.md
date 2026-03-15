@@ -22,11 +22,19 @@ Configuration and setup:
 Install & Configuration:
 [Install](config/graylog/README.md).
 
+## Jenkins
+
+## PiHole
+
+## NetAlertX
+[GitHub](https://github.com/netalertx/NetAlertX)
 
 ## HomePage
 [On Github](https://github.com/gethomepage/homepage)
 [Web](https://gethomepage.dev/)
 
+## BookLore
+[Github](https://github.com/booklore-app/booklore)
 
 password=xxxx
 salt=saltySalt
