@@ -17,7 +17,8 @@ homepage_nginx_port: 3035
 
 pihole_80: 88
 
-navidrome_container_port: 4533
+navidrome_container_port: 4534
+navidrome_nginx_port: 4533
 
 
 myspeed_container_port: 5216

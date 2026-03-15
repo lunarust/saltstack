@@ -83,7 +83,7 @@
 
 - Stuff:
     - Booklore:
-        href: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/
+        href: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/dashboard
         icon: booklore.png
         description: Books
         server: bors

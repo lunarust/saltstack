@@ -4,7 +4,7 @@ upstream navidrome {
 
 server {
 
-        listen       {{ salt['pillar.get']('navidrome_container_port') }};
+        listen       {{ salt['pillar.get']('navidrome_nginx_port') }};
         server_name  {{ salt['grains.get']('fqdn_ip4')[0] }} {{ salt['grains.get']('fqdn') }} localhost;
         charset      utf-8;
 
