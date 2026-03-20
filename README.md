@@ -39,3 +39,7 @@ Install & Configuration:
 password=xxxx
 salt=saltySalt
 echo -n "$password$salt" |md5sum
+
+## Beszel
+To replace grafana & prometheus??
+https://github.com/henrygd/beszel

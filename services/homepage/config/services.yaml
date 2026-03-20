@@ -40,6 +40,18 @@
           url: http://192.168.1.207:20212 # use backend port for widget version 2+
           key: {{ salt['pillar.get']('netalertx_monitoring_api') }}
           version: 2 # optional, default is 1
+    - DockHand:
+        href: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}/
+        icon: dockhand.png
+        description: DockHand
+        server: bors # The docker server that was configured
+        container: dockhand
+        widget:
+          type: dockhand
+          url: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}
+          #environment: local # optional: name or id; aggregates all when omitted
+          username: {{ salt['pillar.get']('dockhand_user') }}
+          password: {{ salt['pillar.get']('dockhand_password') }}
     - Router:
         href: https://192.168.1.1/login.html
         icon: awwesome.png
@@ -64,23 +76,17 @@
         description: My Valet
         server: helios # The docker server that was configured
         container: jenkins-sandbox
-    - DockHand:
-        href: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}/
-        icon: dockhand.png
-        description: DockHand
-        server: bors # The docker server that was configured
-        container: dockhand
-        widget:
-          type: dockhand
-          url: http://bors.greece.local:{{ salt['pillar.get']('dockhand_nginx_port') }}/api
-          environment: local # optional: name or id; aggregates all when omitted
-          username: {{ salt['pillar.get']('dockhand_user') }}
-          password: {{ salt['pillar.get']('dockhand_password') }}
+
+- Databases:
     - InfluxDB:
         href: http://bors.greece.local:8086/
         icon: influxdb.png
         description: Influx
-
+    - MariaDB:
+        icon: mariadb.png
+        description: DB
+        server: bors # The docker server that was configured
+        container: mariadb
 - Stuff:
     - Booklore:
         href: http://bors.greece.local:{{ salt['pillar.get']('booklore_container_port') }}/dashboard
