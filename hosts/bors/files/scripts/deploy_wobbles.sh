@@ -31,11 +31,10 @@ cd $ROOTDIR/push_phone
 echo "Moving to scripts"
 sudo cp target/debug/libpush_phone.rlib /opt/scripts/
 
+#sudo -i rust bash -c "cd /home/rust/git/wobbles_hazards/push_phone/ && cargo build --release --quiet"
 
-sudo -i rust bash -c "cd /home/rust/git/wobbles_hazards/push_phone/ && cargo build --release --quiet"
-
-RUSTUP_HOME=/opt/rust
-export RUSTUP_HOME
-CARGO_HOME=/opt/rust
-export CARGO_HOME
-curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+#RUSTUP_HOME=/opt/rust
+#export RUSTUP_HOME
+#CARGO_HOME=/opt/rust
+#export CARGO_HOME
+#curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
