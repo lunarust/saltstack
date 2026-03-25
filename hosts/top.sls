@@ -5,3 +5,7 @@ bors_scripts:
 helios_scripts:
   'helios.greece.local':
     - helios.init
+
+tanit_scripts:
+  'tanit.greece.local':
+    - tanit.init

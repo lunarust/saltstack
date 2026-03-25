@@ -2,6 +2,9 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins-sandbox
+    hostname: jenkins
+    domainname: jenkins.greece.local
+    mac_address: 62:db:46:95:d1:62
     privileged: true
     user: root
     ports:
@@ -15,6 +18,9 @@ services:
   agent:
     image: jenkins/ssh-agent:jdk11
     container_name: jenkins-sandbox-agent
+    hostname: jenkins-agent
+    domainname: jenkins-agent.greece.local
+    mac_address: e2:26:76:25:9f:8b
     privileged: true
     user: root
     expose:
@@ -26,6 +32,9 @@ services:
   rustagent:
     image: rustmeup
     container_name: jenkins-sandbox-rustagent
+    hostname: jenkins-rustagent
+    domainname: rustagent.greece.local
+    mac_address: 42:ae:1c:3c:5b:82
     privileged: true
     user: root
     expose:

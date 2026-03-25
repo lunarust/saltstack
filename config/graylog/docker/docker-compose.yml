@@ -6,6 +6,9 @@ services:
   mongodb:
     image: "mongodb-raspberrypi4-unofficial-r7.0.4:latest"
     restart: "on-failure"
+    hostname: graylog-mongodb
+    domainname: graylog-mongodb.greece.local
+    mac_address: e6:03:47:9e:fe:f2
     networks:
       - graylog_nw
     ports:
@@ -24,7 +27,9 @@ services:
   # sudo sysctl -p
   datanode:
     image: "graylog/graylog-datanode:7.0.4"
-    hostname: "datanode"
+    #hostname: "graylog-datanode"
+    #domainname: graylog-datanode.greece.local
+    mac_address: 66:6e:0b:47:c2:7f
     environment:
       GRAYLOG_DATANODE_NODE_ID_FILE: "/var/lib/graylog-datanode/node-id"
       # GRAYLOG_DATANODE_PASSWORD_SECRET and GRAYLOG_PASSWORD_SECRET MUST be the same value
@@ -50,8 +55,10 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog-enterprise
   graylog:
-    hostname: "server"
     image: "graylog/graylog:7.0.4"
+    hostname: graylog
+    domainname: graylog.greece.local
+    mac_address: ae:c7:54:97:03:a5
     depends_on:
       mongodb:
         condition: "service_started"

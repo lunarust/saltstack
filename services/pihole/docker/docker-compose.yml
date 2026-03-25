@@ -3,6 +3,7 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    mac_address: c2:09:e1:68:30:5d     
     ports:
       # DNS Ports
       - 53:53/tcp

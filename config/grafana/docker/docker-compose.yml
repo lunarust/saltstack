@@ -1,8 +1,10 @@
-version: '3'
 services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    hostname: grafana
+    domainname: grafana.greece.local
+    mac_address: e2:b8:31:2a:3b:b8
     ports:
       - 3050:3000
     restart: always
