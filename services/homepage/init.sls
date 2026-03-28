@@ -34,6 +34,16 @@ ufw allow {{ salt['pillar.get']('homepage_nginx_port') }}/tcp:
     - create: True
     - template: jinja
 
+/opt/homepage/icon:
+  file.recurse:
+    - source: salt://homepage/icon
+    - user: rust
+    - group: root
+    - file_mode: '755'
+    - create: True
+    - template: jinja
+
+
 # homepage nginx configuration file with upstream to container
 homepage_nginx_configuration:
   file.managed:

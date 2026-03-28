@@ -31,6 +31,8 @@ tududi:
 homepage:
   'helios.greece.local':
     - common
+    - app_ports
+    
 pihole:
   'helios.greece.local':
     - common

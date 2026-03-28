@@ -4,7 +4,7 @@ services:
     container_name: homepage
     hostname: homepage
     domainname: homepage.greece.local
-    mac_address: 62:b3:91:f0:2b:52    
+    mac_address: 62:b3:91:f0:2b:52
     environment:
       HOMEPAGE_ALLOWED_HOSTS: helios.greece.local:{{ salt['pillar.get']('homepage_nginx_port') }},helios:{{ salt['pillar.get']('homepage_nginx_port') }},home.greece.local:{{ salt['pillar.get']('homepage_nginx_port') }} # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
       PUID: 1001 # optional, your user id
@@ -13,5 +13,6 @@ services:
       - {{ salt['pillar.get']('homepage_container_port') }}:3000
     volumes:
       - /opt/homepage/config:/app/config # Make sure your local config directory exists
+      - /opt/homepage/icon:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
     restart: unless-stopped
