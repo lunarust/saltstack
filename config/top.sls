@@ -4,6 +4,9 @@ graylog:
 jenkins:
   'helios.greece.local':
     - jenkins.init
+jenkins_node:
+  'tanit.greece.local':
+    - jenkins.tanit
 grafana:
   'helios.greece.local':
     - grafana.init

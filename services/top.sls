@@ -22,3 +22,6 @@ netalertx:
 dockhand:
   'bors.greece.local':
     - dockhand.init
+registry:
+  'bors.greece.local':
+    - registry.init

@@ -51,3 +51,19 @@ booklore:
 dockhand:
   'bors.greece.local':
     - common
+
+flashcards:
+  'tanit.greece.local':
+    - app_ports
+
+enigma:
+  'tanit.greece.local':
+    - app_ports
+
+vids:
+  'tanit.greece.local':
+    - app_ports
+
+clickbane:
+  'tanit.greece.local':
+    - app_ports

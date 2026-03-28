@@ -15,36 +15,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins_nw
-  agent:
-    image: jenkins/ssh-agent:jdk11
-    container_name: jenkins-sandbox-agent
-    hostname: jenkins-agent
-    domainname: jenkins-agent.greece.local
+  rust_java_backend_node:
+    image: 192.168.1.217:5000/jenkins_java_rust_agent
+    container_name: rust_java_backend_node
+    hostname: rust_java_backend_node
     mac_address: e2:26:76:25:9f:8b
     privileged: true
     user: root
-    expose:
-      - 22
     networks:
       - jenkins_nw
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=${JENKINS_AGENT_SSH_PUBLIC_KEY}
-  rustagent:
-    image: rustmeup
-    container_name: jenkins-sandbox-rustagent
-    hostname: jenkins-rustagent
-    domainname: rustagent.greece.local
-    mac_address: 42:ae:1c:3c:5b:82
-    privileged: true
-    user: root
-    expose:
-      - 22
-    volumes:
-      - /opt/jenkins/home:/opt/rust/workspace
-    networks:
-      - jenkins_nw
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=${JENKINS_AGENT_SSH_PUBLIC_KEY}
+
 networks:
   jenkins_nw:
     external: true

@@ -13,3 +13,7 @@ helios:
 bors:
   host: 192.168.1.217
   port: 2375
+
+tanit:
+  host: 102.168.1.23
+  port: 2375

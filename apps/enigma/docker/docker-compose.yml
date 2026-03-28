@@ -1,0 +1,22 @@
+services:
+  enigma_backend:
+    image: 192.168.1.217:5000/enigma_be
+    container_name: enigma_backend
+    ports:
+      - {{ salt['pillar.get']('enigma_be') }}:9000
+    restart: unless-stopped
+    networks:
+      - enigma_nw
+
+  enigma_frontend:
+    image: 192.168.1.217:5000/enigma_fe
+    container_name: enigma_frontend
+    ports:
+      - {{ salt['pillar.get']('enigma_fe') }}:8000
+    restart: unless-stopped
+    networks:
+    - enigma_nw
+
+networks:
+  enigma_nw:
+    external: true

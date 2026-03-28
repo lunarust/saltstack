@@ -48,14 +48,15 @@ motd:
     - source: salt://os/files/motd
     - template: jinja
 
-# Bash
-#bashrc:
-#  file.managed:
-#    - name: /home/rust/.bashrc
-#    - source: salt://os/files/bashrc
-#    - template: jinja
+{% if grains['fqdn'] in ['helios.greece.local', 'bors.greece.local', 'tanit.greece.local'] %}
 
-{% if grains['fqdn'] in ['helios.greece.local', 'bors.greece.local'] %}
+# Bash
+bashrc:
+  file.managed:
+    - name: /home/rust/.bashrc
+    - source: salt://os/files/bashrc
+    - template: jinja
+
 
 # Bash customization only for pies
 /etc/profile.d/custom_prompt.sh:

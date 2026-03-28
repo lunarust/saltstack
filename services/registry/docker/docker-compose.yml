@@ -1,0 +1,7 @@
+services:
+  registry:
+    image: registry
+    container_name: registry
+    ports:
+      - 5000:5000
+    restart: unless-stopped

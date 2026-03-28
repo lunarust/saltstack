@@ -32,6 +32,17 @@ jenkins_docker:
     - source: salt://jenkins/docker
     - user: rust
     - group: root
+    #- clean: true
+    - create: True
+    - include_empty: True
+
+agent_builder:
+  file.recurse:
+    - name: /opt/jenkins/agent_builder
+    - source: salt://jenkins/docker/agent_builder
+    - user: rust
+    - group: root
+    #- clean: true
     - create: True
     - include_empty: True
 

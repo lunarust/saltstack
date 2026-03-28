@@ -76,6 +76,12 @@
         description: My Valet
         server: helios # The docker server that was configured
         container: jenkins-sandbox
+    - Registry:
+        href: http://bors.greece.local:5000/
+        icon: registry.png
+        description: Docker registry
+        server: bors # The docker server that was configured
+        container: registry
 
 - Databases:
     - InfluxDB:

@@ -1,0 +1,25 @@
+services:
+  flashcards_backend:
+    image: 192.168.1.217:5000/flashcards_be
+    container_name: flashcards_backend
+    ports:
+      - {{ salt['pillar.get']('flashcards_be') }}:9000
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=mysql://root:${DBPASS}@bors.greece.local:3306/flashcards
+    networks:
+      - flashcards_nw
+
+  flashcards_frontend:
+    image: 192.168.1.217:5000/flashcards_fe
+    container_name: flashcards_frontend
+    ports:
+      - {{ salt['pillar.get']('flashcards_fe') }}:8000
+    restart: unless-stopped
+    networks:
+    - flashcards_nw
+
+
+networks:
+  flashcards_nw:
+    external: true
