@@ -1,12 +1,15 @@
 FROM jenkins/ssh-agent:jdk21
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc
 COPY docker.sources /etc/apt/sources.list.d/
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && chmod a+r /etc/apt/keyrings/docker.asc
-RUN apt-get update && apt-get install -y build-essential pkg-config openssl libssl-dev docker-ce fuse-overlayfs && service docker start
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN curl -s http://helios.greece.local:8090/jnlpJars/agent.jar -o /home/jenkins/
-COPY start_agent.sh .token /home/jenkins/
 COPY daemon.json /etc/docker
+RUN apt-get update && apt-get install -y build-essential pkg-config openssl libssl-dev docker-ce fuse-overlayfs && \
+    service docker start && \
+    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    curl -sO http://helios.greece.local:8090/jnlpJars/agent.jar
+ENV PATH="$HOME/.cargo/bin:$PATH"
+COPY start_agent.sh .token /home/jenkins/
 RUN chmod +x /home/jenkins/start_agent.sh
 
 ENTRYPOINT ["/home/jenkins/start_agent.sh"]
