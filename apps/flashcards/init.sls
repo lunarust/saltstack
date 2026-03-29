@@ -7,6 +7,7 @@
     - file_mode: '755'
     - create: True
     - include_empty: True
+    - template: jinja
 
 docker network create flashcards_nw:
   cmd.run:

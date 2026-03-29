@@ -1,0 +1,25 @@
+services:
+  elasticWarden_backend:
+    image: 192.168.1.217:5000/elasticWarden_be
+    container_name: elasticWarden_backend
+    ports:
+      - {{ salt['pillar.get']('elasticWarden_be') }}:9000
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=mysql://root:${DBPASS}@bors.greece.local:3306/elasticWarden
+    networks:
+      - elasticWarden_nw
+
+  elasticWarden_frontend:
+    image: 192.168.1.217:5000/elasticWarden_fe
+    container_name: elasticWarden_frontend
+    ports:
+      - {{ salt['pillar.get']('elasticWarden_fe') }}:8000
+    restart: unless-stopped
+    networks:
+    - elasticWarden_nw
+
+
+networks:
+  elasticWarden_nw:
+    external: true

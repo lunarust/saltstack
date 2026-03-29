@@ -86,28 +86,28 @@
 - TOys:
     - Enigma:
         href: http://tanit.greece.local:{{ salt['pillar.get']('enigma_fe') }}/
-        icon: /icons/logo.svg
+        icon: http://tanit.greece.local:8002/resources/logo.svg
         description: Enigma
         server: tanit # The docker server that was configured
-        container: enigma_fe
+        container: enigma_frontend
     - Flashcards:
         href: http://tanit.greece.local:{{ salt['pillar.get']('flashcards_fe') }}/
-        icon: /icons/logo.svg
+        icon: http://tanit.greece.local:8002/resources/logo.svg
         description: Flashcards
         server: tanit # The docker server that was configured
-        container: flashcards_fe
+        container: flashcards_frontend
     - ClickBane:
         href: http://tanit.greece.local:{{ salt['pillar.get']('clickbane_fe') }}/
-        icon: /icons/logo.svg
+        icon: http://tanit.greece.local:8002/resources/logo.svg
         description: Clickbane
         server: tanit # The docker server that was configured
-        container: clickbane_fe
+        container: clickbane_frontend
     - Vids:
         href: http://tanit.greece.local:{{ salt['pillar.get']('vids_fe') }}/
-        icon: /icons/logo.svg
+        icon: http://tanit.greece.local:8002/resources/logo.svg
         description: vids
         server: tanit # The docker server that was configured
-        container: vids_fe
+        container: vids_frontend
 
 
 - Databases:

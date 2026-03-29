@@ -5,7 +5,7 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings
 RUN apt-get update && apt-get install -y build-essential pkg-config openssl libssl-dev docker-ce fuse-overlayfs && service docker start
 #RUN RUSTUP_HOME=/opt/rust && export RUSTUP_HOME & CARGO_HOME=/opt/rust && export CARGO_HOME && curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN /root/.cargo/bin/cargo install --locked wasm-bindgen-cli trunk && rustup target add wasm32-unknown-unknown && export PATH="$HOME/.cargo/bin:$PATH"
+RUN /root/.cargo/bin/cargo install --locked wasm-bindgen-cli trunk && rustup target add wasm32-unknown-unknown
 COPY daemon.json /etc/docker
 RUN curl -s http://helios.greece.local:8090/jnlpJars/agent.jar -o /home/jenkins/
 COPY start_agent.sh .token /home/jenkins/

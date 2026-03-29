@@ -3,14 +3,10 @@ RUN apt-get update && apt-get install -y curl
 COPY docker.sources /etc/apt/sources.list.d/
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && chmod a+r /etc/apt/keyrings/docker.asc
 RUN apt-get update && apt-get install -y build-essential pkg-config openssl libssl-dev docker-ce fuse-overlayfs && service docker start
-#RUN RUSTUP_HOME=/opt/rust && export RUSTUP_HOME & CARGO_HOME=/opt/rust && export CARGO_HOME && curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN curl -s http://helios.greece.local:8090/jnlpJars/agent.jar -o /home/jenkins/
 COPY start_agent.sh .token /home/jenkins/
 COPY daemon.json /etc/docker
-
 RUN chmod +x /home/jenkins/start_agent.sh
-#EXPOSE 22
 
-#ENTRYPOINT ["setup-sshd"]
 ENTRYPOINT ["/home/jenkins/start_agent.sh"]
