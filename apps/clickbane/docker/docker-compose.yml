@@ -3,10 +3,12 @@ services:
     image: 192.168.1.217:5000/clickbane_be
     container_name: clickbane_backend
     ports:
-      - {{ salt['pillar.get']('clickbane_be') }}:9000
+      - 9000:9000
     restart: unless-stopped
     environment:
       - DATABASE_URL=mysql://root:${DBPASS}@bors.greece.local:3306/clickbane
+    volumes:
+      - /opt/clickbane/configuration.db:/configuration.db
     networks:
       - clickbane_nw
 
@@ -14,7 +16,7 @@ services:
     image: 192.168.1.217:5000/clickbane_fe
     container_name: clickbane_frontend
     ports:
-      - {{ salt['pillar.get']('clickbane_fe') }}:8000
+      - 8000:8000
     restart: unless-stopped
     networks:
     - clickbane_nw
