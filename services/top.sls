@@ -25,3 +25,6 @@ dockhand:
 registry:
   'bors.greece.local':
     - registry.init
+jasperserver:
+  'bors.greece.local':
+    - jasperserver.init

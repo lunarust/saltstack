@@ -36,6 +36,15 @@ jenkins_docker:
     - create: True
     - include_empty: True
 
+{% if grains['fqdn'] == 'helios.greece.local' %}
+jenkins_compose_helios:
+  file.managed:
+    - name: /opt/jenkins/docker-compose.yml
+    - source: salt://jenkins/docker/helios_docker-compose.yml
+    - template: jinja
+    - create: True
+{% endif %}
+
 agent_builder:
   file.recurse:
     - name: /opt/jenkins/agent_builder

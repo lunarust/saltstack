@@ -23,6 +23,10 @@ metabase_staging:
   'aetes.greece.local':
      - metabase_staging
 
+jasperserver:
+  'bors.greece.local':
+    - common
+
 tududi:
   'bors.greece.local':
     - tududi
@@ -32,7 +36,7 @@ homepage:
   'helios.greece.local':
     - common
     - app_ports
-    
+
 pihole:
   'helios.greece.local':
     - common
@@ -54,6 +58,8 @@ dockhand:
   'bors.greece.local':
     - common
 
+
+# My toys app
 flashcards:
   'tanit.greece.local':
     - app_ports

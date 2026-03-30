@@ -1,0 +1,22 @@
+services:
+  sandbox_jasper:
+    image: judahpaul/jasperserver
+    container_name: sandbox_jasper
+    ports:
+      - 8080:8080
+    networks:
+      - reporting_mgmt_nw
+    env_file: .jasper.env
+    volumes:
+      - /opt/jasperserver/jasper_webapp/:/usr/local/tomcat/webapps/
+      - /opt/jasperserver/jasper_home/:/usr/local/share/jasperserver/
+      - /opt/jasperserver/.initialized:/usr/src/jasperreports-server/.initialized:ro
+      - /opt/jasperserver/jasperserver-import:/jasperserver-import
+
+networks:
+  reporting_mgmt_nw:
+    external: true
+
+volumes:
+  jasper_home:
+  jasper_webapp:

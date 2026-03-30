@@ -31,3 +31,5 @@ booklore_nginx_port: 6061
 booklore_container_port: 6060
 
 dockhand_nginx_port: 3060
+
+jasperserver_container_port: 8080

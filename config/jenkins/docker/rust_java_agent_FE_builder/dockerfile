@@ -3,12 +3,12 @@ RUN apt-get update && apt-get install -y curl && \
    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
    chmod a+r /etc/apt/keyrings/docker.asc
 COPY docker.sources /etc/apt/sources.list.d/
-COPY daemon.json /etc/docker
 COPY start_agent.sh .token /home/jenkins/
 RUN apt-get update && apt-get install -y build-essential pkg-config openssl libssl-dev docker-ce fuse-overlayfs && \
   curl https://sh.rustup.rs -sSf | sh -s -- -y &&  /root/.cargo/bin/cargo install --locked wasm-bindgen-cli trunk && \
   curl -sO http://helios.greece.local:8090/jnlpJars/agent.jar
 ENV PATH="$HOME/.cargo/bin:$PATH"
+COPY daemon.json /etc/docker
 RUN chmod +x /home/jenkins/start_agent.sh && /root/.cargo/bin/rustup target add wasm32-unknown-unknown
 #&& \  usermod -aG docker jenkins && service docker start
 
