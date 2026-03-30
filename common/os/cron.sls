@@ -48,6 +48,21 @@ cd /opt/scripts/ && ./fetch_videos.sh true 192.168.1.230 >> /var/log/scripts/fet
     - minute: '12'
     - hour: '3'
 
+cd /opt/scripts/ && ./night.sh >> /var/log/scripts/night_sh 2>&1:
+  cron.present:
+    - identifier: goodnight
+    - user: rust
+    - minute: '06'
+    - hour: '1'
+
+cd /opt/scripts/ && ./morning.sh >> /var/log/scripts/morning_sh 2>&1:
+  cron.present:
+    - identifier: morning
+    - user: rust
+    - minute: '02'
+    - hour: '7'
+
+
 
 {% elif grains['fqdn'] == 'aetes.greece.local' %}
 cd /git/saltstack/hosts/aetes/ && ./rsync_allgit.sh >> /var/log/scripts/rsync_allgit_sh 2>&1:
