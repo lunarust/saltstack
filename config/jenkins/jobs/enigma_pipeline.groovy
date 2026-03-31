@@ -9,13 +9,15 @@ node() {
     ])
     if (userInput.equalsIgnoreCase("YES")) {
       // Backend builder up?
-      script {
-          def output = sh(returnStdout: true,
-            script: 'curl --silent --location "http://helios.greece.local:8090/computer/rust_java_backend_node/api/json" --header "Authorization: Basic amVua2luczpxNUM3MUA8YWguR2IvZ2wzRi0rMw=="  | jq ".offline"')
-          echo "Output: ${output}"
-        if (output == true) {
-          build job: "Restart_Docker_Builders",
-          parameters: [string(Host: 'helios.greece.local')]
+      withCredentials([string(credentialsId: 'Jenkins_Secret', variable: 'TOKEN')]) {
+        script {
+            def output = sh(returnStdout: true,
+              script: 'curl --silent --location "http://helios.greece.local:8090/computer/rust_java_backend_node/api/json" --header "Authorization: Basic $TOKEN"  | jq ".offline"')
+            echo "Output: ${output}"
+          if (output == true) {
+            build job: "Restart_Docker_Builders",
+            parameters: [string(Host: 'helios.greece.local')]
+          }
         }
       }
 
@@ -27,13 +29,15 @@ node() {
   stage('Frontend') {
     // Frontend builder up?
 
-    script {
-      def output = sh(returnStdout: true,
-        script: 'curl --silent --location "http://helios.greece.local:8090/computer/rust_java_frontend_node/api/json" --header "Authorization: Basic amVua2luczpxNUM3MUA8YWguR2IvZ2wzRi0rMw==" | jq ".offline"')
-      echo "Output: ${output}"
-      if (output == true) {
-        build job: "Restart_Docker_Builders",
-        parameters: [string(Host: 'tanit.greece.local')]
+    withCredentials([string(credentialsId: 'Jenkins_Secret', variable: 'TOKEN')]) {
+      script {
+        def output = sh(returnStdout: true,
+          script: 'curl --silent --location "http://helios.greece.local:8090/computer/rust_java_frontend_node/api/json" --header "Authorization: Basic $TOKEN" | jq ".offline"')
+        echo "Output: ${output}"
+        if (output == true) {
+          build job: "Restart_Docker_Builders",
+          parameters: [string(Host: 'tanit.greece.local')]
+        }
       }
     }
 
