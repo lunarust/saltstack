@@ -12,6 +12,20 @@ if [[ "${HOSTNAME}" == 'helios.greece.local' ]]; then
   CONTAINERNAME=rust_java_backend_node
 fi
 
+echo ".. Checking if the container is up & running"
+
+CT=`docker ps --format "{{.Names}}" | grep ${CONTAINERNAME} | wc -l`
+
+if [[ ${CT} != 1 ]]; then
+  cd /opt/jenkins
+  docker-compose up ${CONTAINERNAME} -d
+fi
+
+echo ".. Having a quick nap (_ _) ᶻ 𝗓 𐰁 | ᶻ 𝘇 𐰁 "
+sleep 1
+
+
+echo ".. Checking the service"
 CHECK=`docker exec ${CONTAINERNAME} service docker status`
 CHECK="${CHECK%\"}"
 CHECK="${CHECK#\"}"

@@ -4,5 +4,9 @@
 #       AUTHOR: Celine H.
 #===============================================================================
 cd /opt/elasticWarden
+
+docker-compose down
+
 docker-compose pull
-docker-compose down && docker-compose up -d
+
+docker-compose up -d

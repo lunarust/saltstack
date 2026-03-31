@@ -1,0 +1,3 @@
+FROM jenkins/jenkins:lts
+RUN apt-get update && apt-get install jq
+ENTRYPOINT ["java" "-jar" "/usr/share/jenkins/jenkins.war"]
