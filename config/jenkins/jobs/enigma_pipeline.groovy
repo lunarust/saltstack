@@ -2,6 +2,11 @@ import groovy.json.*
 
 node() {
   milestone 1
+  stage('Refresh') {
+    build job: "Refresh_tanit",
+    parameters: [ string(name: 'service', value: "enigma") ]
+  }
+  milestone 2
   stage('Backend') {
     def userInput = input(
         id: 'userInput', message: 'Should we build the Backend?', parameters: [
@@ -25,7 +30,7 @@ node() {
       build job: "Enigma_Backend"
     }
   }
-  milestone 2
+  milestone 3
   stage('Frontend') {
     // Frontend builder up?
 
@@ -44,7 +49,7 @@ node() {
     // Run build
     build job: "Enigma_Frontend"
   }
-  milestone 3
+  milestone 4
   stage('Release') {
     build job: "Enigma_Release"
   }

@@ -28,7 +28,8 @@ node() {
            build job: 'Wobbles_hazards/ReleaseLibrary'
         }
         else {
-          build job: 'Wobbles_hazards/Release', parameters: [string(name: 'app', value: prj)]
+          build job: 'Wobbles_hazards/Release',
+          parameters: [string(name: 'app', value: prj)]
         }
       }
       else { println "### Nothing to do here" }

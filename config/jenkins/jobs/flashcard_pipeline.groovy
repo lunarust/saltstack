@@ -2,6 +2,11 @@ import groovy.json.*
 
 node() {
   milestone 1
+  stage('Refresh') {
+    build job: "Refresh_tanit",
+    parameters: [ string(name: 'service', value: "flashcards") ]
+  }
+  milestone 2
   stage('Backend') {
     def userInput = input(
         id: 'userInput', message: 'Should we build the Backend?', parameters: [
@@ -24,7 +29,7 @@ node() {
       build job: "Flashcard_Backend"
     }
   }
-  milestone 2
+  milestone 3
   stage('Frontend') {
     // Frontend builder up?
     withCredentials([string(credentialsId: 'Jenkins_Secret', variable: 'TOKEN')]) {
@@ -42,7 +47,7 @@ node() {
     // Run build
     build job: "Flashcard_Frontend"
   }
-  milestone 3
+  milestone 4
   stage('Release') {
     build job: "Flashcard_Release"
   }

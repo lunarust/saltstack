@@ -59,11 +59,11 @@
 
 - Tools:
     - Graylog:
-        href: https://graylog.greece.local:4443
+        href: https://helios.greece.local:4443
         icon: graylog.png
         description: Centralized log management
         server: helios
-        container: graylog-graylog-1
+        container: graylog
     - Grafana:
         href: http://helios.greece.local:3000/
         icon: grafana.png
