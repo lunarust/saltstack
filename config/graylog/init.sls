@@ -18,7 +18,7 @@
 #GRAYLOG_HTTP_EXTERNAL_URI: "http://localhost:9000/"
 
 
-# http://admin:xxxxxxx@192.168.1.207:9000
+# http://admin:xxxxxxx@192.168.1.206:9000
 # http://admin:xxxxxxx@helios.greece.local:9000
 
 

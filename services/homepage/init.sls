@@ -56,6 +56,14 @@ homepage_nginx_configuration:
 nginx -s reload:
   cmd.run
 
+
+nginx_selinux_3015:
+  cmd.run:
+    - names:
+      - semanage permissive -a httpd_t
+      - semanage port -a -t http_port_t  -p tcp 3015
+
+
 #docker network create homepage_nw:
 #  cmd.run:
 #  - unless: docker network inspect homepage_nw

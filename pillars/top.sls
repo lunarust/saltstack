@@ -15,6 +15,10 @@ zabbix:
   '*':
     - secret
 
+sftp:
+  'helios.greece.local':
+    - sftp_user
+
 metabase_production:
   'aetes.greece.local':
      - metabase_production

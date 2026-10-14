@@ -1,6 +1,6 @@
 services:
   enigma_backend:
-    image: 192.168.1.217:5000/enigma_be
+    image: 192.168.1.216:5000/enigma_be
     container_name: enigma_backend
     ports:
       - {{ salt['pillar.get']('enigma_be') }}:9000
@@ -9,7 +9,7 @@ services:
       - enigma_nw
 
   enigma_frontend:
-    image: 192.168.1.217:5000/enigma_fe
+    image: 192.168.1.216:5000/enigma_fe
     container_name: enigma_frontend
     ports:
       - {{ salt['pillar.get']('enigma_fe') }}:8000

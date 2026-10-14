@@ -1,5 +1,5 @@
-salt_master: 192.168.1.217
-zabbix_server: 192.168.1.207
+salt_master: 192.168.1.216
+zabbix_server: 192.168.1.206
 
 gelf_logback_address: helios.greece.local
 gelf_logback_port: 12201

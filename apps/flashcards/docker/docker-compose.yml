@@ -1,6 +1,6 @@
 services:
   flashcards_backend:
-    image: 192.168.1.217:5000/flashcards_be
+    image: 192.168.1.216:5000/flashcards_be
     container_name: flashcards_backend
     ports:
       - {{ salt['pillar.get']('flashcards_be') }}:9000
@@ -11,7 +11,7 @@ services:
       - flashcards_nw
 
   flashcards_frontend:
-    image: 192.168.1.217:5000/flashcards_fe
+    image: 192.168.1.216:5000/flashcards_fe
     container_name: flashcards_frontend
     ports:
       - {{ salt['pillar.get']('flashcards_fe') }}:8000

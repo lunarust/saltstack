@@ -1,4 +1,4 @@
 {
   "storage-driver": "fuse-overlayfs",
-  "insecure-registries": [ "192.168.1.217:5000" ]
+  "insecure-registries": [ "192.168.1.216:5000" ]
 }

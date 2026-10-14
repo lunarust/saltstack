@@ -67,7 +67,7 @@ Check your stream:
 On hosts add syslog redirection to graylog in /etc/rsyslog.d/60-graylog.conf
 
 ```bash
-*.*@192.168.1.207:5140;RSYSLOG_SyslogProtocol23Format
+*.*@192.168.1.206:5140;RSYSLOG_SyslogProtocol23Format
 ```
 
 Allow Selinux to use port 5140

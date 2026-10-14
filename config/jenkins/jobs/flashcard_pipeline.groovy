@@ -1,5 +1,5 @@
 import groovy.json.*
-
+// NEED TO ADD A STEP TO CHECK IF THE REGISTRY IS UP & RUNNING!
 node() {
   milestone 1
   stage('Refresh') {

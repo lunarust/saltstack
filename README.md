@@ -44,5 +44,5 @@ echo -n "$password$salt" |md5sum
 To replace grafana & prometheus??
 https://github.com/henrygd/beszel
 
-http://192.168.1.217:5000/v2/_catalog
-http://192.168.1.217:5000/v2/enigma_be/tags/list
+http://192.168.1.216:5000/v2/_catalog
+http://192.168.1.216:5000/v2/enigma_be/tags/list

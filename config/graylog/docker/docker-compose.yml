@@ -5,7 +5,7 @@ services:
   # MongoDB: https://hub.docker.com/_/mongo/
   #image: "mongodb-raspberrypi4-unofficial-r7.0.4:latest"
   mongodb:
-    image: 192.168.1.217:5000/mongodb
+    image: 192.168.1.216:5000/mongodb
     restart: "on-failure"
     hostname: mongodb
     container_name: mongodb

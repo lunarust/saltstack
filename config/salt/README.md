@@ -48,7 +48,7 @@ salt-key -d helios.greece.local
 if you changed salt-master you will have to remove the cert from the minion before you can register it back.
 In that situation you will have the following errors in salt minion logs
 ```
-Error while bringing up minion for multi-master. Is master at 192.168.1.217 responding? The error message was Unable to sign_in to master: Invalid signature
+Error while bringing up minion for multi-master. Is master at 192.168.1.216 responding? The error message was Unable to sign_in to master: Invalid signature
 ```
 Steps:
 ```bash

@@ -8,3 +8,9 @@ base:
     - salt_minion.init
 #    - hawser.init
 #    - os.packages
+
+
+sftp:
+  'helios.greece.local':
+    - sftp.init
+    - sftp.accounts

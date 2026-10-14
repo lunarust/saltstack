@@ -1,14 +1,14 @@
 - Network & Monitoring:
     - Pi-Hole:
         href: http://helios.greece.local:88/admin/
-        siteMonitor: http://192.168.1.207:88
+        siteMonitor: http://192.168.1.206:88
         icon: pi-hole.png
         description: Network-wide ad blocking & DNS
         server: helios
         container: pihole
         widget:
           type: pihole
-          url: http://192.168.1.207:88
+          url: http://192.168.1.206:88
           version: 6
           key: {{ salt['pillar.get']('pihole_pass') }}
     - MySpeed:
@@ -19,7 +19,7 @@
         container: myspeed
         widget:
           type: myspeed
-          url: http://192.168.1.217:{{ salt['pillar.get']('myspeed_nginx_port') }}
+          url: http://192.168.1.216:{{ salt['pillar.get']('myspeed_nginx_port') }}
           password: {{ salt['pillar.get']('myspeed_pass') }}
     - Zabbix:
         href: http://helios.greece.local:8080/
@@ -27,7 +27,7 @@
         description: Monitoring
         widget:
           type: zabbix
-          url: http://192.168.1.207:8080
+          url: http://192.168.1.206:8080
           key: {{ salt['pillar.get']('zabbix_monitoring_api') }}
     - NetAlertX:
         href: http://helios.greece.local:20211/
@@ -37,7 +37,7 @@
         container: netalertx
         widget:
           type: netalertx
-          url: http://192.168.1.207:20212 # use backend port for widget version 2+
+          url: http://192.168.1.206:20212 # use backend port for widget version 2+
           key: {{ salt['pillar.get']('netalertx_monitoring_api') }}
           version: 2 # optional, default is 1
     - DockHand:
@@ -83,36 +83,6 @@
         server: bors # The docker server that was configured
         container: registry
 
-- TOys:
-    - Enigma:
-        href: http://tanit.greece.local:{{ salt['pillar.get']('enigma_fe') }}/
-        icon: http://tanit.greece.local:8002/resources/logo.svg
-        sizes: 512x512
-        description: Enigma
-        server: tanit # The docker server that was configured
-        container: enigma_frontend
-    - Flashcards:
-        href: http://tanit.greece.local:{{ salt['pillar.get']('flashcards_fe') }}/
-        icon: http://tanit.greece.local:8002/resources/kaoru.png
-        sizes: 512x512
-        description: Flashcards
-        server: tanit # The docker server that was configured
-        container: flashcards_frontend
-    - ClickBane:
-        href: http://tanit.greece.local:{{ salt['pillar.get']('clickbane_fe') }}/
-        icon: http://tanit.greece.local:8000/ClickBane.png
-        sizes: 512x512
-        description: Clickbane
-        server: tanit # The docker server that was configured
-        container: clickbane_frontend
-    - Vids:
-        href: http://tanit.greece.local:{{ salt['pillar.get']('vids_fe') }}/
-        icon: http://tanit.greece.local:8002/resources/logo.svg
-        sizes: 512x512
-        description: vids
-        server: tanit # The docker server that was configured
-        container: vids_frontend
-
 
 - Databases:
     - InfluxDB:
@@ -144,7 +114,7 @@
         container: navidrome
         widget:
           type: navidrome
-          url: http://192.168.1.217:4533
+          url: http://192.168.1.216:4533
           user: rust
           token: {{ salt['pillar.get']('navidrome_token') }}
           salt: jackandjill
@@ -154,3 +124,34 @@
         description: todo stuff
         server: bors
         container: tududi
+
+
+- TOys:
+    - Enigma:
+        href: http://tanit:{{ salt['pillar.get']('enigma_fe') }}/
+        icon: http://tanit:{{ salt['pillar.get']('enigma_fe') }}/resources/logo.svg
+        sizes: 512x512
+        description: Enigma
+        server: tanit # The docker server that was configured
+        container: enigma_frontend
+    - Flashcards:
+        href: http://tanit:{{ salt['pillar.get']('flashcards_fe') }}/
+        icon: http://tanit:{{ salt['pillar.get']('flashcards_fe') }}/resources/kaoru.png
+        sizes: 512x512
+        description: Flashcards
+        server: tanit # The docker server that was configured
+        container: flashcards_frontend
+    - ClickBane:
+        href: http://tanit:{{ salt['pillar.get']('clickbane_fe') }}/
+        icon: http://tanit:{{ salt['pillar.get']('clickbane_fe') }}/resources/ClickBane.png
+        sizes: 512x512
+        description: Clickbane
+        server: tanit # The docker server that was configured
+        container: clickbane_frontend
+    - Vids:
+        href: http://tanit.greece.local:{{ salt['pillar.get']('vids_fe') }}/
+        icon: http://tanit.greece.local:8002/resources/logo.svg
+        sizes: 512x512
+        description: vids
+        server: tanit # The docker server that was configured
+        container: vids_frontend

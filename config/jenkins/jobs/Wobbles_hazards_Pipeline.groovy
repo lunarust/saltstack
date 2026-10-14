@@ -42,7 +42,7 @@ node() {
       function: 'state.highstate', jobPollTime: 16,
       target: 'bors.greece.local', targettype: 'glob'),
       credentialsId: 'f6cb0e72-3691-40c6-aea0-aa768887c9bf',
-      servername: 'http://192.168.1.217:8080'
+      servername: 'http://192.168.1.216:8080'
     def prettyJson = JsonOutput.prettyPrint(saltresult_refresh)
 
     println(prettyJson)
